@@ -11,11 +11,14 @@ public class CatalogueItemViewModel : IRegister
     public BookViewModel Book { get; set; }
 
     public CheckoutViewModel? Checkout { get; set; }
+
+    public List<ReservationViewModel> Reservations { get; set; } = [];
     
     public void Register(TypeAdapterConfig config)
     {
         config.NewConfig<Book, CatalogueItemViewModel>()
             .Map(x => x.Checkout, src => src.Checkouts.FirstOrDefault(x => x.ReturnDate == null))
+            .Map(x => x.Reservations, src => src.Reservations)
             .Ignore(x => x.Book)
             .GenerateMapper(MapType.Projection);
     }

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Library.Repository.Migrations
 {
     /// <inheritdoc />
@@ -11,6 +13,19 @@ namespace Library.Repository.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ReservationStatus",
+                columns: table => new
+                {
+                    ReservationStatusId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReservationStatus", x => x.ReservationStatusId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
@@ -78,7 +93,7 @@ namespace Library.Repository.Migrations
                 {
                     ReservationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     HoldDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReservationStatusId = table.Column<int>(type: "int", nullable: false),
                     BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -90,6 +105,12 @@ namespace Library.Repository.Migrations
                         column: x => x.BookId,
                         principalTable: "Book",
                         principalColumn: "BookId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reservation_ReservationStatus_ReservationStatusId",
+                        column: x => x.ReservationStatusId,
+                        principalTable: "ReservationStatus",
+                        principalColumn: "ReservationStatusId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reservation_User_UserId",
@@ -127,6 +148,15 @@ namespace Library.Repository.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "ReservationStatus",
+                columns: new[] { "ReservationStatusId", "Status" },
+                values: new object[,]
+                {
+                    { 1, "Reserved" },
+                    { 2, "Fulfilled" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Book_UserId",
                 table: "Book",
@@ -159,6 +189,11 @@ namespace Library.Repository.Migrations
                 column: "BookId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Reservation_ReservationStatusId",
+                table: "Reservation",
+                column: "ReservationStatusId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reservation_UserId",
                 table: "Reservation",
                 column: "UserId");
@@ -175,6 +210,9 @@ namespace Library.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "Checkout");
+
+            migrationBuilder.DropTable(
+                name: "ReservationStatus");
 
             migrationBuilder.DropTable(
                 name: "Book");

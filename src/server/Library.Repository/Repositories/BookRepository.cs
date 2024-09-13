@@ -29,4 +29,12 @@ public class BookRepository(LibraryContext context, IMediator mediator) : Librar
             .Select(CheckoutMapper.ProjectToViewModel)
             .FirstOrDefaultAsync(token);
     }
+    
+    public async Task<ReservationViewModel?> GetReservation(Guid reservationId, CancellationToken token)
+    {
+        return await context.Set<Reservation>()
+            .Where(x => x.ReservationId == reservationId)
+            .Select(ReservationMapper.ProjectToViewModel)
+            .FirstOrDefaultAsync(token);
+    }
 }

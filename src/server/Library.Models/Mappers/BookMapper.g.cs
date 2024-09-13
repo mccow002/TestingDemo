@@ -18,7 +18,14 @@ namespace CRA.Domain.Mappers
                 DueDate = p1.Checkouts.FirstOrDefault<Checkout>(x => x.ReturnDate == null).DueDate,
                 UserId = p1.Checkouts.FirstOrDefault<Checkout>(x => x.ReturnDate == null).UserId,
                 Name = p1.Checkouts.FirstOrDefault<Checkout>(x => x.ReturnDate == null).User.Name
-            }
+            },
+            Reservations = p1.Reservations.Select<Reservation, ReservationViewModel>(p2 => new ReservationViewModel()
+            {
+                ReservationId = p2.ReservationId,
+                HoldDate = p2.HoldDate,
+                UserId = p2.UserId,
+                Name = p2.User.Name
+            }).ToList<ReservationViewModel>()
         };
     }
 }

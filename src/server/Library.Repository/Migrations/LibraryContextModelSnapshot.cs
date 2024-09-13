@@ -119,9 +119,8 @@ namespace Library.Repository.Migrations
                     b.Property<DateTime>("HoldDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ReservationStatusId")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -130,9 +129,40 @@ namespace Library.Repository.Migrations
 
                     b.HasIndex("BookId");
 
+                    b.HasIndex("ReservationStatusId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Reservation");
+                });
+
+            modelBuilder.Entity("Library.Domain.Domain.ReservationStatus", b =>
+                {
+                    b.Property<int>("ReservationStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservationStatusId"));
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReservationStatusId");
+
+                    b.ToTable("ReservationStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            ReservationStatusId = 1,
+                            Status = "Reserved"
+                        },
+                        new
+                        {
+                            ReservationStatusId = 2,
+                            Status = "Fulfilled"
+                        });
                 });
 
             modelBuilder.Entity("Library.Domain.Domain.User", b =>
@@ -211,6 +241,12 @@ namespace Library.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Library.Domain.Domain.ReservationStatus", "ReservationStatus")
+                        .WithMany("Reservations")
+                        .HasForeignKey("ReservationStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Library.Domain.Domain.User", "User")
                         .WithMany("Reservations")
                         .HasForeignKey("UserId")
@@ -218,6 +254,8 @@ namespace Library.Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Book");
+
+                    b.Navigation("ReservationStatus");
 
                     b.Navigation("User");
                 });
@@ -232,6 +270,11 @@ namespace Library.Repository.Migrations
             modelBuilder.Entity("Library.Domain.Domain.Checkout", b =>
                 {
                     b.Navigation("Fine");
+                });
+
+            modelBuilder.Entity("Library.Domain.Domain.ReservationStatus", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("Library.Domain.Domain.User", b =>

@@ -17,4 +17,12 @@ export type CatalogueItem = {
   bookId: string;
   checkout: CheckoutViewModel;
   book: BookViewModel;
+  reservations: ReservationViewModel[];
 }
+
+export type ReservationViewModel = {
+  reservationId: string;
+  holdDate: Date;
+  userId: string;
+  name: string;
+};

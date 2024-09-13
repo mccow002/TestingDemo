@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {ComponentStore, OnStoreInit} from "@ngrx/component-store";
+import { ComponentStore, OnStoreInit, tapResponse } from "@ngrx/component-store";
 import {BookViewModel} from "../../../../shared/models";
 import {CatalogueHttpService} from "../../data-access/catalogue-http.service";
 import {Observable, switchMap, tap} from "rxjs";
@@ -7,6 +7,9 @@ import {BsModalService} from "ngx-bootstrap/modal";
 import {AddBookComponent} from "../add-book/add-book.component";
 import {map} from "rxjs/operators";
 import {CatalogueItem} from "../../data-access/models";
+import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
+
+const catalogueAdapter: EntityAdapter<CatalogueItem> = createEntityAdapter<CatalogueItem>();
 
 type BookCatalogueState = {
   catalogue: CatalogueItem[]
@@ -29,6 +32,8 @@ export class BookCatalogueStore extends ComponentStore<BookCatalogueState> imple
     ...state,
     catalogue
   }));
+
+
 
   // effects
   readonly getBooks = this.effect((trigger$: Observable<void>) =>
@@ -53,6 +58,19 @@ export class BookCatalogueStore extends ComponentStore<BookCatalogueState> imple
         cardNumber: prompt('Enter your card number') ?? ''
       })),
       switchMap(data => this.http.checkoutBook(data.bookId, data.cardNumber)),
+      // tapResponse(
+      //   rsp =>
+      // )
+    )
+  );
+
+  readonly reserveBook = this.effect((bookId$: Observable<string>) =>
+    bookId$.pipe(
+      map(bookId => ({
+        bookId,
+        cardNumber: prompt('Enter your card number') ?? ''
+      })),
+      switchMap(data => this.http.reserveBook(data.bookId, data.cardNumber)),
       //tap(rsp => )
     )
   );
