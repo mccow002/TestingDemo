@@ -1,6 +1,6 @@
 ﻿using Refit;
 
-namespace Library.OpenLibraryApi;
+namespace Library.OpenLibraryApi.Models;
 
 public class SearchParams
 {

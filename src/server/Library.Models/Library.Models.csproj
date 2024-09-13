@@ -6,4 +6,25 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Mapster" Version="7.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Library.Domain\Library.Domain.csproj" />
+      <ProjectReference Include="..\Library.OpenLibraryApi.Models\Library.OpenLibraryApi.Models.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Mappers\" />
+    </ItemGroup>
+
+    <Target Name="Mapster">
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet build -p:CopyLocalLockFileAssemblies=true" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool restore" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster model -a &quot;$(TargetDir)$(ProjectName).dll&quot; -n CRA.Domain.Mappers -o Mappers -r" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster extension -a &quot;$(TargetDir)$(ProjectName).dll&quot; -n CRA.Domain.Mappers -o Mappers" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster mapper -a &quot;$(TargetDir)$(ProjectName).dll&quot; -n CRA.Domain.Mappers -o Mappers" />
+    </Target>
+
 </Project>

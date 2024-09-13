@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.2.5" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
@@ -16,7 +22,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Library.Api.ServiceDefaults\Library.Api.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Library.Commands\Library.Commands.csproj" />
+    <ProjectReference Include="..\Library.DomainEvents\Library.DomainEvents.csproj" />
     <ProjectReference Include="..\Library.Domain\Library.Domain.csproj" />
+    <ProjectReference Include="..\Library.Elasticsearch\Library.Elasticsearch.csproj" />
+    <ProjectReference Include="..\Library.OpenLibraryApi\Library.OpenLibraryApi.csproj" />
+    <ProjectReference Include="..\Library.Queries\Library.Queries.csproj" />
     <ProjectReference Include="..\Library.Repository\Library.Repository.csproj" />
   </ItemGroup>
 

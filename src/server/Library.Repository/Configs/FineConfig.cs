@@ -10,5 +10,8 @@ public class FineConfig : IEntityTypeConfiguration<Fine>
     {
         builder.Property(x => x.FineId)
             .ValueGeneratedOnAdd();
+
+        builder.Property(x => x.Amount)
+            .HasColumnType("money");
     }
 }

@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Library.Api\Library.Api.csproj" />
+    <ProjectReference Include="..\Library.MessageProcessor\Library.MessageProcessor.csproj" />
   </ItemGroup>
 
 </Project>

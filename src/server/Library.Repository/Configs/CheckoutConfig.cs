@@ -10,5 +10,10 @@ public class CheckoutConfig : IEntityTypeConfiguration<Checkout>
     {
         builder.Property(x => x.CheckoutId)
             .ValueGeneratedOnAdd();
+
+        builder.HasOne(x => x.Fine)
+            .WithOne(x => x.Checkout)
+            .HasForeignKey<Fine>(x => x.CheckoutId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

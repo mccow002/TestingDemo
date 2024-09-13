@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add User</h4>
+</div>
+<div class="modal-body">
+  <form [formGroup]="userForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+    </div>
+    <div class="mb-3">
+      <label for="cardNumber" class="form-label">Card Number</label>
+      <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="close()">Cancel</button>
+  <button class="btn btn-primary" (click)="addUser()">Save</button>
+</div>

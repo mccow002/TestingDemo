@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between">
+      <h2>Book Catalogue</h2>
+      <button class="btn btn-primary btn-sm" (click)="openAddInventory()">Add Book</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card w-100 m-2" *ngFor="let item of catalogue$ | async">
+        <div class="row">
+          <div class="col-auto">
+            <app-book-details [book]="item.book"></app-book-details>
+          </div>
+          <div class="col">
+            <div class="card m-3" *ngIf="item.checkout">
+              <div class="card-body">
+                <h5 class="card-title">Checked Out</h5>
+                <div>Name: {{ item.checkout.name }}</div>
+                <div>Checkout Date: {{ item.checkout.checkoutTime | date }}</div>
+                <div>Due Date: {{ item.checkout.dueDate | date }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer float-end">
+          <button *ngIf="!item.checkout" class="btn btn-primary" (click)="checkout(item.bookId)">Checkout</button>
+          <span *ngIf="item.checkout" class="d-flex flex-row gap-3">
+            <button class="btn btn-primary" (click)="checkin(item.bookId)">Checkin</button>
+            <button class="btn btn-primary" (click)="reserve(item.bookId)">Renew</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

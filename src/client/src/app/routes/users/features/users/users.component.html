@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between">
+      <h2>Library Users</h2>
+      <button class="btn btn-primary btn-sm" (click)="addUser()">Add User</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table-sm table-striped w-100">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Card Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users$ | async">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.cardNumber }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

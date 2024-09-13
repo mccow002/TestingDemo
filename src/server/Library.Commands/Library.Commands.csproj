@@ -10,4 +10,10 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Library.Domain\Library.Domain.csproj" />
+    <ProjectReference Include="..\Library.Models\Library.Models.csproj" />
+    <ProjectReference Include="..\Library.OpenLibraryApi.Models\Library.OpenLibraryApi.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -10,4 +10,14 @@
       <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.15.6" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+        <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Library.Models\Library.Models.csproj" />
+    </ItemGroup>
+
 </Project>

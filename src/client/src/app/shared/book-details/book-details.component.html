@@ -1,0 +1,18 @@
+<div class="card-body">
+  <div class="card-title">{{book.title}}</div>
+  <div class="row">
+    <div class="col-auto">
+      <img
+        *ngIf="book.coverEditionKey"
+        src="https://covers.openlibrary.org/b/olid/{{book.coverEditionKey}}.jpg" alt="Book Cover" class="cover"
+      />
+    </div>
+    <div class="col">
+      <div class="card-text">
+        <div>Isbn: {{book.isbn}}</div>
+        <div>Author: {{book.authorName}}</div>
+        <div>Published: {{book.firstPublishYear}}</div>
+      </div>
+    </div>
+  </div>
+</div>

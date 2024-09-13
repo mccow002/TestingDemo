@@ -1,4 +1,6 @@
-﻿using Library.Repository.Repositories;
+﻿using Library.Domain.Contracts;
+using Library.Models.Contracts;
+using Library.Repository.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,8 @@ public static class RepositoryBootstrapper
         });
         
         builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
+        builder.Services.AddScoped<IBookRepository, BookRepository>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
 
         return builder;
     }

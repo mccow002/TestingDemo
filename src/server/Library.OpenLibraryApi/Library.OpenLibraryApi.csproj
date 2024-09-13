@@ -12,4 +12,8 @@
       <PackageReference Include="Refit.HttpClientFactory" Version="7.1.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Library.OpenLibraryApi.Models\Library.OpenLibraryApi.Models.csproj" />
+    </ItemGroup>
+
 </Project>

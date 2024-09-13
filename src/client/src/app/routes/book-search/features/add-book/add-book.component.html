@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Book</h4>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search for books" [formControl]="searchCtrl">
+          <button class="btn btn-outline-secondary" type="button" (click)="search()">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card w-100 m-2" *ngFor="let result of results$ | async">
+          <app-book-details [book]="result"></app-book-details>
+          <div class="card-footer float-end">
+            <button class="btn btn-primary" (click)="addBook(result)">Add Book</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="close()">Cancel</button>
+</div>

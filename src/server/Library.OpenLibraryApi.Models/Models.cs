@@ -1,17 +1,23 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Library.OpenLibraryApi;
+namespace Library.OpenLibraryApi.Models;
 
 public class Doc
 {
     [JsonPropertyName("author_alternative_name")]
-    public List<string> AuthorAlternativeName { get; set; }
+    public List<string> AuthorAlternativeName { get; set; } = [];
 
     [JsonPropertyName("author_key")]
-    public List<string> AuthorKey { get; set; }
+    public List<string> AuthorKey { get; set; } = [];
 
     [JsonPropertyName("author_name")]
-    public List<string> AuthorName { get; set; }
+    public List<string> AuthorName { get; set; } = [];
+
+    [JsonPropertyName("cover_edition_key")]
+    public string CoverEditionKey { get; set; }
+    
+    [JsonPropertyName("cover_i")]
+    public int CoverImage { get; set; }
 
     [JsonPropertyName("ebook_access")]
     public string EbookAccess { get; set; }
@@ -23,43 +29,46 @@ public class Doc
     public int EditionCount { get; set; }
 
     [JsonPropertyName("edition_key")]
-    public List<string> EditionKey { get; set; }
+    public List<string> EditionKey { get; set; } = [];
 
     [JsonPropertyName("first_publish_year")]
     public int FirstPublishYear { get; set; }
+
+    [JsonPropertyName("first_sentence")]
+    public List<string> FirstSentence { get; set; } = [];
 
     [JsonPropertyName("has_fulltext")]
     public bool HasFulltext { get; set; }
 
     [JsonPropertyName("isbn")]
-    public List<string> Isbn { get; set; }
+    public List<string> Isbn { get; set; } = [];
 
     [JsonPropertyName("key")]
     public string Key { get; set; }
 
     [JsonPropertyName("language")]
-    public List<string> Language { get; set; }
+    public List<string> Language { get; set; } = [];
 
     [JsonPropertyName("last_modified_i")]
     public int LastModifiedI { get; set; }
 
     [JsonPropertyName("lcc")]
-    public List<string> Lcc { get; set; }
+    public List<string> Lcc { get; set; } = [];
 
     [JsonPropertyName("public_scan_b")]
     public bool PublicScanB { get; set; }
 
     [JsonPropertyName("publish_date")]
-    public List<string> PublishDate { get; set; }
+    public List<string> PublishDate { get; set; } = [];
 
     [JsonPropertyName("publish_year")]
-    public List<int> PublishYear { get; set; }
+    public List<int> PublishYear { get; set; } = [];
 
     [JsonPropertyName("publisher")]
-    public List<string> Publisher { get; set; }
+    public List<string> Publisher { get; set; } = [];
 
     [JsonPropertyName("seed")]
-    public List<string> Seed { get; set; }
+    public List<string> Seed { get; set; } = [];
 
     [JsonPropertyName("title")]
     public string Title { get; set; }
@@ -74,13 +83,13 @@ public class Doc
     public string Type { get; set; }
 
     [JsonPropertyName("subject")]
-    public List<string> Subject { get; set; }
+    public List<string> Subject { get; set; } = [];
 
     [JsonPropertyName("publisher_facet")]
-    public List<string> PublisherFacet { get; set; }
+    public List<string> PublisherFacet { get; set; } = [];
 
     [JsonPropertyName("subject_facet")]
-    public List<string> SubjectFacet { get; set; }
+    public List<string> SubjectFacet { get; set; } = [];
 
     [JsonPropertyName("_version_")]
     public long Version { get; set; }
@@ -89,10 +98,10 @@ public class Doc
     public string LccSort { get; set; }
 
     [JsonPropertyName("author_facet")]
-    public List<string> AuthorFacet { get; set; }
+    public List<string> AuthorFacet { get; set; } = [];
 
     [JsonPropertyName("subject_key")]
-    public List<string> SubjectKey { get; set; }
+    public List<string> SubjectKey { get; set; } = [];
 }
 
 public class SearchResults

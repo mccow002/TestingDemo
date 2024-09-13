@@ -1,6 +1,12 @@
-﻿namespace Library.Repository.Repositories;
+﻿using Library.Domain;
+using Library.Domain.Contracts;
+using Library.Domain.Domain;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-public class LibraryRepository(LibraryContext context) : ILibraryRepository
+namespace Library.Repository.Repositories;
+
+public class LibraryRepository(LibraryContext context, IMediator mediator) : ILibraryRepository
 {
     
     public void Add<T>(T entity) where T : class
@@ -20,6 +26,20 @@ public class LibraryRepository(LibraryContext context) : ILibraryRepository
     
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
     {
-        return await context.SaveChangesAsync(cancellationToken);
+        var entities = context.ChangeTracker
+            .Entries<Entity>()
+            .Where(x => x.Entity.DomainEvents.Any())
+            .ToList();
+        
+        var events = entities.SelectMany(x => x.Entity.DomainEvents).ToList();
+        
+        var results = await context.SaveChangesAsync(cancellationToken);
+
+        foreach (var @event in events)
+        {
+            await mediator.Publish(@event, cancellationToken);
+        }
+
+        return results;
     }
 }

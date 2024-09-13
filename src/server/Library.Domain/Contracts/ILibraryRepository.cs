@@ -1,4 +1,4 @@
-﻿namespace Library.Repository.Repositories;
+﻿namespace Library.Domain.Contracts;
 
 public interface ILibraryRepository
 {
