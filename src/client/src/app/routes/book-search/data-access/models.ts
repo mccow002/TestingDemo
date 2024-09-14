@@ -15,7 +15,7 @@ export type CheckoutViewModel = {
 
 export type CatalogueItem = {
   bookId: string;
-  checkout: CheckoutViewModel;
+  checkout: CheckoutViewModel | null;
   book: BookViewModel;
   reservations: ReservationViewModel[];
 }
@@ -26,3 +26,8 @@ export type ReservationViewModel = {
   userId: string;
   name: string;
 };
+
+export type CheckinResponse = {
+  checkout: CheckoutViewModel | null;
+  fulfilledReservation: string | null;
+}

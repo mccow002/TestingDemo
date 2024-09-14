@@ -1,4 +1,5 @@
-﻿using Library.Commands.Books.CheckoutBook;
+﻿using Library.Commands.Books.CheckinBook;
+using Library.Commands.Books.CheckoutBook;
 using Library.Commands.Books.ReserveBook;
 using Library.Queries.Books.GetAllBooks;
 using MediatR;
@@ -25,6 +26,11 @@ public static class CatalogueEndpoints
         
         catalogue.MapPost("/reserve",
             async ([FromBody] ReserveBookRequest request, IMediator mediator, CancellationToken token) =>
+            Results.Ok(await mediator.Send(request, token))
+        );
+        
+        catalogue.MapPost("/checkin",
+            async ([FromBody] CheckinBookRequest request, IMediator mediator, CancellationToken token) =>
             Results.Ok(await mediator.Send(request, token))
         );
 

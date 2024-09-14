@@ -19,7 +19,7 @@ namespace CRA.Domain.Mappers
                 UserId = p1.Checkouts.FirstOrDefault<Checkout>(x => x.ReturnDate == null).UserId,
                 Name = p1.Checkouts.FirstOrDefault<Checkout>(x => x.ReturnDate == null).User.Name
             },
-            Reservations = p1.Reservations.Select<Reservation, ReservationViewModel>(p2 => new ReservationViewModel()
+            Reservations = p1.Reservations.Where<Reservation>(x => x.ReservationStatusId == ReservationStatus.Reserved.ReservationStatusId).Select<Reservation, ReservationViewModel>(p2 => new ReservationViewModel()
             {
                 ReservationId = p2.ReservationId,
                 HoldDate = p2.HoldDate,

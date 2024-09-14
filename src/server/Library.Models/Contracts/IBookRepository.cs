@@ -10,4 +10,5 @@ public interface IBookRepository : ILibraryRepository
     Task<CheckoutViewModel?> GetCheckout(Guid bookId, CancellationToken token);
     Task<List<CatalogueItemViewModel>> GetCatalogueItemsByIds(List<Guid> bookIds, CancellationToken token);
     Task<ReservationViewModel?> GetReservation(Guid reservationId, CancellationToken token);
+    Task<Book> GetBookForCheckin(Guid bookId, CancellationToken token);
 }

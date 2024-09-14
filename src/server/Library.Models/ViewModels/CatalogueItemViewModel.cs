@@ -18,7 +18,7 @@ public class CatalogueItemViewModel : IRegister
     {
         config.NewConfig<Book, CatalogueItemViewModel>()
             .Map(x => x.Checkout, src => src.Checkouts.FirstOrDefault(x => x.ReturnDate == null))
-            .Map(x => x.Reservations, src => src.Reservations)
+            .Map(x => x.Reservations, src => src.Reservations.Where(x => x.ReservationStatusId == ReservationStatus.Reserved.ReservationStatusId))
             .Ignore(x => x.Book)
             .GenerateMapper(MapType.Projection);
     }

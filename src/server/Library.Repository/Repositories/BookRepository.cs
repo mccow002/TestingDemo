@@ -14,6 +14,15 @@ public class BookRepository(LibraryContext context, IMediator mediator) : Librar
         return await context.Set<Book>().FirstOrDefaultAsync(x => x.BookId == bookId, token);
     }
     
+    public async Task<Book> GetBookForCheckin(Guid bookId, CancellationToken token)
+    {
+        return await context.Set<Book>()
+            .Include(x => x.Checkouts.Where(c => c.ReturnDate == null))
+            .Include(x => x.Reservations.Where(r => r.ReservationStatusId == ReservationStatus.Reserved.ReservationStatusId))
+            .AsSplitQuery()
+            .FirstOrDefaultAsync(x => x.BookId == bookId, token) ?? throw new InvalidOperationException();
+    }
+    
     public async Task<List<CatalogueItemViewModel>> GetCatalogueItemsByIds(List<Guid> bookIds, CancellationToken token)
     {
         return await context.Set<Book>()

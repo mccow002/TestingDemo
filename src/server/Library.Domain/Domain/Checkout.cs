@@ -5,12 +5,12 @@ public class Checkout
     internal Checkout()
     { }
     
-    internal Checkout(Guid bookId, Guid userId, DateTime checkoutTime)
+    internal Checkout(Guid bookId, Guid userId)
     {
         BookId = bookId;
         UserId = userId;
-        CheckoutTime = checkoutTime;
-        DueDate = checkoutTime.AddDays(14);
+        CheckoutTime = DateTime.Now;
+        DueDate = CheckoutTime.AddDays(14);
     }
     
     public Guid CheckoutId { get; internal set; }
@@ -32,9 +32,14 @@ public class Checkout
     public Guid? FineId { get; internal set; }
 
     public Fine? Fine { get; internal set; }
-    
-    public static Checkout Create(Guid bookId, Guid userId, DateTime checkoutTime)
+
+    public void Return()
     {
-        return new Checkout(bookId, userId, checkoutTime);
+        ReturnDate = DateTime.Now;
+    }
+    
+    public static Checkout Create(Guid bookId, Guid userId)
+    {
+        return new Checkout(bookId, userId);
     }
 }

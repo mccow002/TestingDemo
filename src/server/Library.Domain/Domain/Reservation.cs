@@ -28,4 +28,9 @@ public class Reservation
             UserId = userId
         };
     }
+
+    public void Fulfill()
+    {
+        ReservationStatusId = ReservationStatus.Fulfilled.ReservationStatusId;
+    }
 }

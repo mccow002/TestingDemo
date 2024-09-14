@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {BookViewModel} from "../../../shared/models";
-import { CatalogueItem, CheckoutViewModel, ReservationViewModel, SearchResults } from "./models";
+import {CatalogueItem, CheckinResponse, CheckoutViewModel, ReservationViewModel, SearchResults} from "./models";
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,10 @@ export class CatalogueHttpService {
   }
 
   reserveBook(bookId: string, cardNumber: string): Observable<ReservationViewModel> {
-    return this.http.post<ReservationViewModel>(`${this.baseUrl}/catalogue/reserve`, { bookId });
+    return this.http.post<ReservationViewModel>(`${this.baseUrl}/catalogue/reserve`, { bookId, cardNumber });
+  }
+
+  checkinBook(bookId: string): Observable<CheckinResponse> {
+    return this.http.post<CheckinResponse>(`${this.baseUrl}/catalogue/checkin`, { bookId });
   }
 }

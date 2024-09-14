@@ -15,8 +15,7 @@ public class CheckoutBookHandler(IBookRepository bookRepository, IUserRepository
         
         var checkout = Checkout.Create(
             request.BookId,
-            user.UserId,
-            DateTime.Now
+            user.UserId
         );
         
         bookRepository.Add(checkout);

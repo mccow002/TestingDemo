@@ -24,10 +24,10 @@ export class BookSearchComponent {
   }
 
   checkin(bookId: string) {
-    
+    this.store.checkinBook(bookId);
   }
 
   reserve(bookId: string) {
-    
+    this.store.reserveBook(bookId);
   }
 }
