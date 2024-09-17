@@ -3,6 +3,7 @@ using FluentAssertions;
 using Library.Commands.Books.CheckinBook;
 using Library.Commands.Tests.Books.CheckinBook.Fixtures;
 using Library.Domain.Tests.Fakes;
+using Library.Models.ViewModels;
 using NSubstitute;
 
 namespace Library.Commands.Tests.Books.CheckinBook;
@@ -37,6 +38,10 @@ public class CheckinBookTests
             // Arrange
             var reservation = ReservationGenerator.Instance.Generate();
             _fixture.Book.Reservations.Add(reservation);
+
+            var checkout = _fixture.Create<CheckoutViewModel>();
+            _fixture.MockBookRepository.GetCheckout(Arg.Any<Guid>(), default)
+                .Returns(checkout);
             
             var request = _fixture.Create<CheckinBookRequest>();
             var sut = _fixture.CreateSut();
@@ -46,10 +51,18 @@ public class CheckinBookTests
 
             // Assert
             rsp.Checkout.Should().NotBeNull();
-            rsp.FulfilledReservation.Should().NotBeNull();
+            rsp.Checkout.CheckoutTime.Should().Be(checkout.CheckoutTime);
+            rsp.Checkout.Name.Should().Be(checkout.Name);
+            rsp.Checkout.UserId.Should().Be(checkout.UserId);
             
-            _fixture.MockBookRepository.Received().GetBookForCheckin(request.BookId, default);
-            _fixture.MockBookRepository.Received().SaveChangesAsync(default);
+            rsp.FulfilledReservation.Should().NotBeNull();
+            rsp.FulfilledReservation.Should().Be(reservation.ReservationId);
+            
+            _fixture.MockBookRepository.Received()
+                .GetBookForCheckin(request.BookId, default);
+            
+            _fixture.MockBookRepository.Received()
+                .SaveChangesAsync(default);
         }
     }
 }

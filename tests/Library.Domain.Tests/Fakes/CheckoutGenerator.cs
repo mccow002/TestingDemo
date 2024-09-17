@@ -5,6 +5,8 @@ namespace Library.Domain.Tests.Fakes;
 
 public sealed class CheckoutGenerator : Faker<Checkout>
 {
+    public static CheckoutGenerator Instance => new();
+    
     public CheckoutGenerator()
     {
         CustomInstantiator(_ => new Checkout());
