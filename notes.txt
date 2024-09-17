@@ -1,0 +1,78 @@
+Unit Tests
+Apply the same level of thought and care to your tests as you do your code
+	Tests aren't exempt from coding standards
+Don't test the plumbing 
+Designing your code in a testable way - ie, no business logic on presentation
+	Put different concerns in different places (validators, mappers, etc)
+Unit Testing doesn't always mean testing a single class or method - test units of functionality
+One Assert per Test - good theory bad practice
+private methods need to be made public or internals
+	- no, they will be tested through public entry points
+
+Avoid Rabbit Holes
+testing business logic vs just getting code coverage
+	100% code coverage is not always good
+verifying calls to injected services
+TimeProvider
+internals
+Test Class format
+demo how code coverage can be happy yet the test is useless
+
+Conventional mindset is to start at the bottom of the pyramid and work your way up.
+	The more valuable tests are the upper levels
+
+
+Libraries
+- NSubstitute
+- AutoFixture
+- Bogus
+- FluentAssertions
+- Test Containers
+- Respawn
+
+
+Types of Tests
+- Unit
+- Mutation
+- Architecture
+- Acceptance Testing
+- Integration
+	- Component
+	- Environment
+- Contract Testing
+- Smoke
+- Load
+	- Stress, Spike, Load, Soak
+- Performance
+- End to End
+
+
+Presentation Flow
+- Opinion Warning
+- Test Pyramid
+ - Small repeatable tests vs large brittle tests
+ - This is why there's so many types - example, contract vs integration
+- Overview of Library app
+- Unit Testing Definition
+	- Code that tests your code
+- Fake Data Generation
+- Mocking
+- Verifying
+- Dos and Donts
+- Writing the first test
+ - Worst way
+ - break down identifying test parts
+ - Isolation
+ - Fixture
+ - Testing Mindset 
+  - Value vs code coverage
+- Mutation Testing
+- Architecture Testing
+- Integration Testing
+ - Component Testing vs standing environment
+- Load Testing
+- Smoke
+- Contract
+- Performance
+- End to End
+- Demo Respawn

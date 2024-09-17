@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-Library.MessageProcessor-a0f410b3-56c4-4970-92b4-c4d2802ff5ef</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MassTransit" Version="8.2.5" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.5" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\2_Application\Library.Commands\Library.Commands.csproj" />
+      <ProjectReference Include="..\..\2_Application\Library.DomainEvents\Library.DomainEvents.csproj" />
+      <ProjectReference Include="..\..\2_Application\Library.Queries\Library.Queries.csproj" />
+      <ProjectReference Include="..\..\3_Adapters\Library.Elasticsearch\Library.Elasticsearch.csproj" />
+      <ProjectReference Include="..\..\3_Adapters\Library.OpenLibraryApi\Library.OpenLibraryApi.csproj" />
+      <ProjectReference Include="..\..\3_Adapters\Library.Repository\Library.Repository.csproj" />
+      <ProjectReference Include="..\Library.Api.ServiceDefaults\Library.Api.ServiceDefaults.csproj" />
+    </ItemGroup>
+</Project>

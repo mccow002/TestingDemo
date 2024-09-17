@@ -13,7 +13,7 @@
             <app-book-details [book]="item.book"></app-book-details>
           </div>
           <div class="col">
-            <div class="card m-3" *ngIf="item.checkout">
+            <div class="card m-3" *ngIf="item.checkout" data-testid="checkout-panel">
               <div class="card-body">
                 <h5 class="card-title">Checked Out</h5>
                 <div>Name: {{ item.checkout.name }}</div>
@@ -21,7 +21,7 @@
                 <div>Due Date: {{ item.checkout.dueDate | date }}</div>
               </div>
             </div>
-            <div class="card m-3" *ngIf="item.reservations?.length">
+            <div class="card m-3" *ngIf="item.reservations?.length" data-testid="reservations-panel">
               <div class="card-body">
                 <h5 class="card-title">Reservations</h5>
                 <div *ngFor="let reservation of item.reservations">
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="card-footer float-end">
-          <button *ngIf="!item.checkout" class="btn btn-primary" (click)="checkout(item.bookId)">Checkout</button>
+          <button *ngIf="!item.checkout" class="btn btn-primary" ariar (click)="checkout(item.bookId)">Checkout</button>
           <span *ngIf="item.checkout" class="d-flex flex-row gap-3">
             <button class="btn btn-primary" (click)="checkin(item.bookId)">Checkin</button>
             <button class="btn btn-primary" (click)="reserve(item.bookId)">Reserve</button>
