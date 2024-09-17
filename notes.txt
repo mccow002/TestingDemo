@@ -13,9 +13,14 @@ Avoid Rabbit Holes
 testing business logic vs just getting code coverage
 	100% code coverage is not always good
 verifying calls to injected services
+
+THINGS TO COVER IN DEMO
+Fixture
 TimeProvider
-internals
+internals (internals visible to)
 Test Class format
+
+
 demo how code coverage can be happy yet the test is useless
 
 Conventional mindset is to start at the bottom of the pyramid and work your way up.
