@@ -6,13 +6,15 @@ using Xunit.Abstractions;
 
 namespace Library.ContractTests;
 
-public class LibraryApiTests
+public class LibraryApiTests : IClassFixture<LibraryApiFactory>
 {
     private readonly ITestOutputHelper _output;
+    private readonly HttpClient _client;
 
-    public LibraryApiTests(ITestOutputHelper output)
+    public LibraryApiTests(ITestOutputHelper output, LibraryApiFactory apiFactory)
     {
         _output = output;
+        _client = apiFactory.CreateClient();
     }
     
     [Fact]
@@ -38,9 +40,9 @@ public class LibraryApiTests
         using var pactVerifier = new PactVerifier("Library API", config);
         
         pactVerifier
-            .WithHttpEndpoint(new Uri("https://localhost:44314"))
+            .WithHttpEndpoint(new Uri("http://localhost:5000"))
             .WithFileSource(new FileInfo(pactPath))
-            .WithProviderStateUrl(new Uri("https://localhost:44314/provider-states"))
+            .WithProviderStateUrl(new Uri("http://localhost:5000/provider-states"))
             .Verify();
     }
 }

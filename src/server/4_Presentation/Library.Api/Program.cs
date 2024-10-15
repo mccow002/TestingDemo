@@ -4,7 +4,6 @@ using Library.Commands;
 using Library.DomainEvents;
 using Library.Elasticsearch;
 using Library.GoogleBooks;
-using Library.OpenLibraryApi;
 using Library.Queries;
 using Library.Repository;
 using MassTransit;
@@ -39,6 +38,8 @@ builder.Services.AddMassTransit(mt =>
 });
 
 var app = builder.Build();
+
+//app.UseMiddleware<ProviderStateMiddleware>();
 
 app.MapDefaultEndpoints();
 

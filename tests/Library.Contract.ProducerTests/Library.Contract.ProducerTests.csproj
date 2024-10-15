@@ -11,6 +11,7 @@
 
     <ItemGroup>
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.8" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageReference Include="PactNet" Version="5.0.0" />
         <PackageReference Include="PactNet.Output.Xunit" Version="1.0.0" />
@@ -20,6 +21,10 @@
 
     <ItemGroup>
         <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\server\4_Presentation\Library.Api\Library.Api.csproj" />
     </ItemGroup>
 
 </Project>
