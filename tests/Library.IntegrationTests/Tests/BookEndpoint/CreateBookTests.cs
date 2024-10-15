@@ -34,9 +34,10 @@ public class CreateBookTests(LibraryApp app) : IClassFixture<LibraryApp>
         // Assert
         response.EnsureSuccessStatusCode();
 
-        var newBooks = await app.DbContext.Set<Book>().ToListAsync();
+        await using var context = app.GetDbContext();
+        var newBooks = await context.Set<Book>().ToListAsync();
         newBooks.Should().HaveCount(1);
-        newBooks[0].Isbn.Should().Be(request.Isbn);
+        newBooks[0].VolumeId.Should().Be(request.Isbn);
 
         var elasticClient = app.Api.Services.GetRequiredService<ElasticsearchClient>();
         var bookModel = await elasticClient.GetAsync<BookViewModel>(newBooks[0].BookId);

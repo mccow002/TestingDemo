@@ -1,4 +1,5 @@
 ﻿using CRA.Domain.Mappers;
+using Library.GoogleBooks.Models;
 using Library.Models.Books;
 using Library.OpenLibraryApi.Models;
 using MediatR;
@@ -9,17 +10,15 @@ public record BookSearchRequest(string SearchTerm) : IRequest<BookSearchResponse
 
 public record BookSearchResponse(int Total, List<BookViewModel> Results);
 
-public class BookSearchHandler(IOpenLibraryApiClient apiClient) : IRequestHandler<BookSearchRequest, BookSearchResponse>
+public class BookSearchHandler(IGoogleBooksApiClient apiClient) : IRequestHandler<BookSearchRequest, BookSearchResponse>
 {
     public async Task<BookSearchResponse> Handle(BookSearchRequest request, CancellationToken cancellationToken)
     {
-        var searchParams = new SearchParams { Query = request.SearchTerm };
-        var results = await apiClient.Search(searchParams);
-        var viewModels = results.Docs
-            .Where(x => x.Isbn.Count != 0)
+        var results = await apiClient.Search(request.SearchTerm, "AIzaSyCC478lljstyd4uqJQo-Kudqeddx5Osx2o");
+        var viewModels = results.Items
             .Select(x => x.AdaptToBookViewModel())
             .ToList();
         
-        return new BookSearchResponse(results.NumFound, viewModels);
+        return new BookSearchResponse(results.TotalItems, viewModels);
     }
 }

@@ -12,7 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Library.Domain\Library.Domain.csproj" />
-      <ProjectReference Include="..\Library.OpenLibraryApi.Models\Library.OpenLibraryApi.Models.csproj" />
+      <ProjectReference Include="..\Library.GoogleBooks.Models\Library.GoogleBooks.Models.csproj" />
     </ItemGroup>
 
     <ItemGroup>

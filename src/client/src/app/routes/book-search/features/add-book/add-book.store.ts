@@ -45,9 +45,9 @@ export class AddBookStore extends ComponentStore<AddBookState> {
     )
   );
 
-  readonly addBook = this.effect((isbn$: Observable<string>) =>
-    isbn$.pipe(
-      switchMap(isbn => this.http.addBook(isbn)),
+  readonly addBook = this.effect((volumeId$: Observable<string>) =>
+    volumeId$.pipe(
+      switchMap(volumeId => this.http.addBook(volumeId)),
       tapResponse(
         () => this.modalRef.hide(),
         () => console.error('Failed to add book')

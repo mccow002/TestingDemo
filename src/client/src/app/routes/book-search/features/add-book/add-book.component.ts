@@ -27,6 +27,6 @@ export class AddBookComponent {
   }
 
   addBook(result: BookViewModel) {
-    this.store.addBook(result.isbn);
+    this.store.addBook(result.volumeId);
   }
 }

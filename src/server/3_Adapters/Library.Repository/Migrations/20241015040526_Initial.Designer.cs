@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Repository.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20240913205650_Initial")]
+    [Migration("20241015040526_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -31,12 +31,12 @@ namespace Library.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Isbn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("VolumeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BookId");
 

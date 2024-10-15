@@ -1,22 +1,23 @@
 ﻿using AutoFixture;
 using Library.Commands.Books.AddBook;
-using Library.Commands.Tests.Books.AddBookHandlerTests.Fixtures;
+using Library.Commands.Tests.TUnit.Books.AddBook.Fixtures;
 using Library.Domain.Domain;
 using Library.Domain.DomainEvents.Books;
 using NSubstitute;
 
-namespace Library.Commands.Tests.Books.AddBookHandlerTests;
+namespace Library.Commands.Tests.TUnit.Books.AddBook;
 
 public class AddBookHandlerTests
 {
     private AddBookHandlerFixture _fixture;
     
-    public AddBookHandlerTests()
+    [Before(Test)]
+    public async Task SetupTest(TestContext context)
     {
         _fixture = new AddBookHandlerFixture();
     }
     
-    [Fact]
+    [Test]
     public async Task Handle_WhenCalled_ShouldAddBook()
     {
         // Arrange

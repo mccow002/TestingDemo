@@ -14,7 +14,7 @@ public class LibraryProcessorFactory : WebApplicationFactory<ProcessorProgram>
 {
     private readonly SqlServer _sqlServer;
     private readonly Dependencies.Elasticsearch _elasticsearch;
-    private readonly OpenLibraryMockApi _openLibraryApi;
+    private readonly GoogleBooksMockApi _googleBooksApi;
     private readonly RabbitMq _rabbitMq;
 
     private IHost _processor;
@@ -22,12 +22,12 @@ public class LibraryProcessorFactory : WebApplicationFactory<ProcessorProgram>
     public LibraryProcessorFactory(
         SqlServer sqlServer,
         Dependencies.Elasticsearch elasticsearch,
-        OpenLibraryMockApi openLibraryApi,
+        GoogleBooksMockApi googleBooksApi,
         RabbitMq rabbitMq)
     {
         _sqlServer = sqlServer;
         _elasticsearch = elasticsearch;
-        _openLibraryApi = openLibraryApi;
+        _googleBooksApi = googleBooksApi;
         _rabbitMq = rabbitMq;
     }
 
@@ -58,8 +58,8 @@ public class LibraryProcessorFactory : WebApplicationFactory<ProcessorProgram>
                     _elasticsearch.ConnectionString
                 },
                 {
-                    "OpenLibraryApi:Uri",
-                    _openLibraryApi.Url
+                    "GoogleBooksApi:Uri",
+                    _googleBooksApi.Url
                 }
             };
 

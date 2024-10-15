@@ -45,7 +45,7 @@ namespace Library.Repository.Migrations
                 columns: table => new
                 {
                     BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Isbn = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VolumeId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>

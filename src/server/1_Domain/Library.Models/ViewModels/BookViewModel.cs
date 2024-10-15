@@ -1,4 +1,4 @@
-﻿using Library.OpenLibraryApi.Models;
+﻿using Library.GoogleBooks.Models;
 using Mapster;
 
 namespace Library.Models.Books;
@@ -9,13 +9,13 @@ public class BookViewModel : IRegister
     
     public string AuthorName { get; set; }
 
-    public string CoverEditionKey { get; set; }
+    public string CoverLink { get; set; }
 
-    public int FirstPublishYear { get; set; }
+    public string PublishDate { get; set; }
 
-    public string FirstSentence { get; set; }
+    public string Description { get; set; }
 
-    public string Isbn { get; set; }
+    public string VolumeId { get; set; }
 
     public string Publisher { get; set; }
 
@@ -25,12 +25,15 @@ public class BookViewModel : IRegister
     
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<Doc, BookViewModel>()
-            .Map(x => x.Isbn, src => src.Isbn[0])
-            .Map(x => x.AuthorName, src => src.AuthorName.Count != 0 ? src.AuthorName[0] : string.Empty)
-            .Map(x => x.FirstSentence, src => src.FirstSentence.Count != 0 ? src.FirstSentence[0] : string.Empty)
-            .Map(x => x.Publisher, src => src.Publisher.Count != 0 ? src.Publisher[0] : string.Empty)
-            .Map(x => x.Subject, src => src.Subject.Count != 0 ? src.Subject[0] : string.Empty)
+        config.NewConfig<SearchItem, BookViewModel>()
+            .Map(x => x.VolumeId, src => src.Id)
+            .Map(x => x.CoverLink, src => src.VolumeInfo.ImageLinks.Thumbnail)
+            .Map(x => x.Title, src => src.VolumeInfo.Title)
+            .Map(x => x.PublishDate, src => src.VolumeInfo.PublishedDate)
+            .Map(x => x.AuthorName, src => src.VolumeInfo.Authors.Count != 0 ? src.VolumeInfo.Authors[0] : string.Empty)
+            .Map(x => x.Description, src => src.VolumeInfo.Description)
+            .Map(x => x.Publisher, src => src.VolumeInfo.Publisher)
+            .Map(x => x.Subject, src => src.VolumeInfo.Categories.Count != 0 ? src.VolumeInfo.Categories[0] : string.Empty)
             .Ignore(x => x.BookId)
             .GenerateMapper(MapType.Map);
     }

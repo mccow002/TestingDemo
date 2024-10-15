@@ -22,8 +22,15 @@ public class EventListener
             {
                 return;
             }
+
+            if (item.GetType() == typeof(ErrorOccurredEvent))
+            {
+                throw ((ErrorOccurredEvent)item).Exception;
+            }
         }
         
         throw new InvalidOperationException($"Event of type {typeof(T).Name} was not processed.");
     }
 }
+
+public record ErrorOccurredEvent(Exception Exception);

@@ -6,7 +6,7 @@ using Refit;
 
 namespace Library.IntegrationTests.Core.Dependencies;
 
-public class OpenLibraryMockApi
+public class GoogleBooksMockApi
 {
     private readonly int _port = Random.Shared.Next(10000, 60000);
     
@@ -16,11 +16,11 @@ public class OpenLibraryMockApi
             new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() })
     };
 
-    public OpenLibraryMockApi()
+    public GoogleBooksMockApi()
     {
         Container = new ContainerBuilder().WithImage("mockserver/mockserver")
             .WithPortBinding(_port, 1080)
-            .WithBindMount(Path.Combine(Environment.CurrentDirectory, $"ApiSpecs/OpenLibrary"), "/config")
+            .WithBindMount(Path.Combine(Environment.CurrentDirectory, $"ApiSpecs/GoogleBooks"), "/config")
             .WithEnvironment("MOCKSERVER_INITIALIZATION_JSON_PATH", $"/config/*.json")
             //.WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(_port))
             .Build();

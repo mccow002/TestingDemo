@@ -3,6 +3,7 @@ using Library.Api.ServiceDefaults;
 using Library.Commands;
 using Library.DomainEvents;
 using Library.Elasticsearch;
+using Library.GoogleBooks;
 using Library.OpenLibraryApi;
 using Library.Queries;
 using Library.Repository;
@@ -22,7 +23,7 @@ builder.Services.AddCors(c => c.AddDefaultPolicy(p => p.AllowAnyHeader().AllowAn
 builder.AddRepository();
 builder.Services.AddLibraryCommands();
 builder.Services.AddLibraryQueries();
-builder.Services.AddOpenLibraryApi(builder.Configuration);
+builder.Services.AddGoogleBooks(builder.Configuration);
 builder.Services.AddElasticsearch(builder.Configuration);
 builder.Services.AddDomainEvents();
 

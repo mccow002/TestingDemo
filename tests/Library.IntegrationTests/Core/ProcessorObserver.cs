@@ -14,8 +14,8 @@ public class ProcessorObserver(EventListener eventListener) : IConsumeObserver
         await eventListener.Handle(context.Message, context.CancellationToken);
     }
 
-    public Task ConsumeFault<T>(ConsumeContext<T> context, Exception exception) where T : class
+    public async Task ConsumeFault<T>(ConsumeContext<T> context, Exception exception) where T : class
     {
-        return Task.CompletedTask;
+        await eventListener.Handle(new ErrorOccurredEvent(exception), context.CancellationToken);
     }
 }

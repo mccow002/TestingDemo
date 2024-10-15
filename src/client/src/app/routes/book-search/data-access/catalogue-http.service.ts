@@ -23,8 +23,8 @@ export class CatalogueHttpService {
     return this.http.get<SearchResults>(`${this.baseUrl}/books/search`, { params });
   }
 
-  addBook(isbn: string): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/books`, { isbn });
+  addBook(volumeId: string): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/books`, { isbn: volumeId });
   }
 
   checkoutBook(bookId: string, cardNumber: string): Observable<CheckoutViewModel> {

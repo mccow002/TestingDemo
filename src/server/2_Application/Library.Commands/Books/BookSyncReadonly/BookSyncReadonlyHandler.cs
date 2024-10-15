@@ -1,6 +1,6 @@
 ﻿using CRA.Domain.Mappers;
+using Library.GoogleBooks.Models;
 using Library.Models.Contracts;
-using Library.OpenLibraryApi.Models;
 using MediatR;
 
 namespace Library.Commands.Books.BookSyncReadonly;
@@ -8,17 +8,16 @@ namespace Library.Commands.Books.BookSyncReadonly;
 public record BookSyncReadonlyRequest(Guid BookId) : IRequest;
 
 public class BookSyncReadonlyHandler(
-    IOpenLibraryApiClient api, 
+    IGoogleBooksApiClient api, 
     IBookRepository bookRepository,
     IReadonlyStore readonlyStore) : IRequestHandler<BookSyncReadonlyRequest>
 {
     public async Task Handle(BookSyncReadonlyRequest request, CancellationToken cancellationToken)
     {
         var book = await bookRepository.GetById(request.BookId, cancellationToken);
-        var results = await api.GetBookByIsbn(book.Isbn);
-        var bookDetails = results.Docs.FirstOrDefault();
+        var result = await api.GetBookById(book.VolumeId, "AIzaSyCC478lljstyd4uqJQo-Kudqeddx5Osx2o");
         
-        var viewModel = bookDetails.AdaptToBookViewModel();
+        var viewModel = result.AdaptToBookViewModel();
         viewModel.BookId = book.BookId;
         
         await readonlyStore.Index(viewModel, cancellationToken);

@@ -7,22 +7,22 @@ public class Book : Entity
     internal Book()
     {}
     
-    internal Book(string isbn)
+    internal Book(string volumeId)
     {
-        Isbn = isbn;
+        VolumeId = volumeId;
         AddDomainEvent(new BookCreatedEvent(this));
     }
     
     public Guid BookId { get; internal set; }
 
-    public string Isbn { get; internal set; }
+    public string VolumeId { get; internal set; }
 
     public ICollection<Checkout> Checkouts { get; internal set; } = [];
 
     public ICollection<Reservation> Reservations { get; internal set; } = [];
     
-    public static Book Create(string isbn)
+    public static Book Create(string volumeId)
     {
-        return new Book(isbn);
+        return new Book(volumeId);
     }
 }
