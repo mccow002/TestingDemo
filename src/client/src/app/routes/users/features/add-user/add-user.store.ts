@@ -44,4 +44,10 @@ export class AddUserStore extends ComponentStore<AddUserState> {
       })
     )
   );
+
+  readonly close = this.effect(trigger$ =>
+    trigger$.pipe(
+      tap(() => this.modalRef.hide())
+    )
+  );
 }

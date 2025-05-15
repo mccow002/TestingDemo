@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {BookViewModel} from "../models";
-import { CommonModule, NgOptimizedImage } from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-book-details',
@@ -9,8 +9,7 @@ import { CommonModule, NgOptimizedImage } from "@angular/common";
   imports: [
     CommonModule,
     NgOptimizedImage
-  ],
-  standalone: true
+  ]
 })
 export class BookDetailsComponent {
   @Input() book!: BookViewModel;

@@ -1,5 +1,7 @@
-import {Injectable} from "@angular/core";
-import {ComponentStore, OnStoreInit, tapResponse} from "@ngrx/component-store";
+import {inject, Injectable} from "@angular/core";
+import { ComponentStore, OnStoreInit } from '@ngrx/component-store';
+import { tapResponse } from '@ngrx/operators';
+
 import {CatalogueHttpService} from "../../data-access/catalogue-http.service";
 import {Observable, switchMap, tap} from "rxjs";
 import {BsModalService} from "ngx-bootstrap/modal";
@@ -7,6 +9,9 @@ import {AddBookComponent} from "../add-book/add-book.component";
 import {map} from "rxjs/operators";
 import {CatalogueItem, CheckoutViewModel, ReservationViewModel} from "../../data-access/models";
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
+import {ActionsSubject} from "@ngrx/store";
+import {ofType} from "@ngrx/effects";
+import {bookAddedNotification, BookViewModel} from "../../../../shared/models";
 
 const catalogueAdapter: EntityAdapter<CatalogueItem> = createEntityAdapter<CatalogueItem>({
   selectId: model => model.bookId
@@ -16,10 +21,12 @@ type BookCatalogueState = EntityState<CatalogueItem>;
 
 @Injectable()
 export class BookCatalogueStore extends ComponentStore<BookCatalogueState> implements OnStoreInit {
-  constructor(
-    private readonly http: CatalogueHttpService,
-    private readonly modalService: BsModalService
-  ) {
+
+  http = inject(CatalogueHttpService);
+  modalService = inject(BsModalService);
+  actions$ = inject(ActionsSubject);
+
+  constructor() {
     super(catalogueAdapter.getInitialState());
 
     this.state$.subscribe(state => {
@@ -58,6 +65,10 @@ export class BookCatalogueStore extends ComponentStore<BookCatalogueState> imple
         reservations: state.entities[value.bookId]!.reservations.filter(x => x.reservationId !== value.reservationId)
       }
     }, state)
+  );
+
+  readonly addCatalogItem = this.updater((state, value: CatalogueItem) =>
+    catalogueAdapter.addOne(value, state)
   );
 
 
@@ -128,6 +139,13 @@ export class BookCatalogueStore extends ComponentStore<BookCatalogueState> imple
         },
         () => alert('Error checking in book')
       )
+    )
+  );
+
+  readonly onBookAdded = this.effect(() =>
+    this.actions$.pipe(
+      ofType(bookAddedNotification),
+      tap(action => this.addCatalogItem(action.model))
     )
   );
 

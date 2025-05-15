@@ -7,11 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Library.Commands\Library.Commands.csproj" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.5" />
+      <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MassTransit" Version="8.4.1" />
+      <ProjectReference Include="..\..\1_Domain\Library.Notifications.Models\Library.Notifications.Models.csproj" />
     </ItemGroup>
 
 </Project>

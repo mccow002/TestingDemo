@@ -4,6 +4,7 @@ using Library.DomainEvents;
 using Library.Elasticsearch;
 using Library.GoogleBooks;
 using Library.MessageProcessor;
+using Library.Notifications;
 using Library.Queries;
 using Library.Repository;
 using MassTransit;
@@ -18,6 +19,7 @@ builder.Services.AddLibraryQueries();
 builder.Services.AddGoogleBooks(builder.Configuration);
 builder.Services.AddElasticsearch(builder.Configuration);
 builder.Services.AddDomainEvents();
+builder.AddNotifications();
 
 builder.Services.AddMassTransit(mt =>
 {

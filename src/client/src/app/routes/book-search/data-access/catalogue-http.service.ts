@@ -1,18 +1,16 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {inject, Injectable} from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 import {Observable} from "rxjs";
-import {BookViewModel} from "../../../shared/models";
 import {CatalogueItem, CheckinResponse, CheckoutViewModel, ReservationViewModel, SearchResults} from "./models";
+import {URL_TOKEN} from "../../../shared/models";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogueHttpService {
 
-  baseUrl: string = 'https://localhost:7179';
-
-  constructor(private readonly http: HttpClient) {
-  }
+  baseUrl = inject(URL_TOKEN);
+  http = inject(HttpClient);
 
   getBooks(): Observable<CatalogueItem[]> {
     return this.http.get<CatalogueItem[]>(`${this.baseUrl}/catalogue/books`);

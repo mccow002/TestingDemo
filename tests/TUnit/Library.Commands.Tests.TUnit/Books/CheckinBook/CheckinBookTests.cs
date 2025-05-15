@@ -56,17 +56,17 @@ public class CheckinBookTests
             var rsp = await sut.Handle(request, default);
 
             // Assert
-            await Assert.That(rsp.Checkout).IsNotNull();
-            await Assert.That(rsp.Checkout.CheckoutTime).IsEqualTo(checkout.CheckoutTime);
-            await Assert.That(rsp.Checkout.Name).IsEqualTo(checkout.Name);
-            await Assert.That(rsp.Checkout.UserId).IsEqualTo(checkout.UserId);
-
-            // using var _ = Assert.Multiple();
-            //
-            // await Assert.That(rsp.Checkout).IsNull();
+            // await Assert.That(rsp.Checkout).IsNotNull();
             // await Assert.That(rsp.Checkout.CheckoutTime).IsEqualTo(checkout.CheckoutTime);
-            // await Assert.That(rsp.Checkout.Name).IsEqualTo("Blergh");
+            // await Assert.That(rsp.Checkout.Name).IsEqualTo(checkout.Name);
             // await Assert.That(rsp.Checkout.UserId).IsEqualTo(checkout.UserId);
+
+            using var _ = Assert.Multiple();
+            
+            await Assert.That(rsp.Checkout).IsNull();
+            await Assert.That(rsp.Checkout.CheckoutTime).IsEqualTo(checkout.CheckoutTime);
+            await Assert.That(rsp.Checkout.Name).IsEqualTo("Blergh");
+            await Assert.That(rsp.Checkout.UserId).IsEqualTo(checkout.UserId);
             
             await Assert.That(rsp.FulfilledReservation).IsNotNull();
             await Assert.That(rsp.FulfilledReservation).IsEqualTo(reservation.ReservationId);

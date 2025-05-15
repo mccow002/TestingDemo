@@ -1,17 +1,16 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {inject, Injectable} from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 import {Observable} from "rxjs";
 import {UserViewModel} from "./models";
+import {URL_TOKEN} from "../../../shared/models";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersHttpService {
 
-  baseUrl: string = 'https://localhost:7179';
-
-  constructor(private readonly http: HttpClient) {
-  }
+  baseUrl = inject(URL_TOKEN);
+  http = inject(HttpClient);
 
   getUsers(): Observable<UserViewModel[]> {
     return this.http.get<UserViewModel[]>(`${this.baseUrl}/users`);

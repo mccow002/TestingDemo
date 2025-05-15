@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-Library.MessageProcessor-a0f410b3-56c4-4970-92b4-c4d2802ff5ef</UserSecretsId>
@@ -9,9 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MassTransit" Version="8.2.5" />
-        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.5" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+        <PackageReference Include="MassTransit" Version="8.4.1" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
     </ItemGroup>
 
     <ItemGroup>
@@ -26,6 +26,7 @@
       <ProjectReference Include="..\..\2_Application\Library.Queries\Library.Queries.csproj" />
       <ProjectReference Include="..\..\3_Adapters\Library.Elasticsearch\Library.Elasticsearch.csproj" />
       <ProjectReference Include="..\..\3_Adapters\Library.GoogleBooks\Library.GoogleBooks.csproj" />
+      <ProjectReference Include="..\..\3_Adapters\Library.Notifications\Library.Notifications.csproj" />
       <ProjectReference Include="..\..\3_Adapters\Library.Repository\Library.Repository.csproj" />
       <ProjectReference Include="..\Library.Api.ServiceDefaults\Library.Api.ServiceDefaults.csproj" />
     </ItemGroup>

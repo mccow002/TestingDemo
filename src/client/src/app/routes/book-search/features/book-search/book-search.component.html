@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="card-footer float-end">
-          <button *ngIf="!item.checkout" class="btn btn-primary" ariar (click)="checkout(item.bookId)">Checkout</button>
+          <button *ngIf="!item.checkout" class="btn btn-primary" (click)="checkout(item.bookId)">Checkout</button>
           <span *ngIf="item.checkout" class="d-flex flex-row gap-3">
             <button class="btn btn-primary" (click)="checkin(item.bookId)">Checkin</button>
             <button class="btn btn-primary" (click)="reserve(item.bookId)">Reserve</button>

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>fdfecdc2-9dad-4992-8bfc-6443d2391916</UserSecretsId>
@@ -9,15 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MassTransit" Version="8.2.5" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+    <PackageReference Include="MassTransit" Version="8.4.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="PactNet" Version="5.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +26,7 @@
     <ProjectReference Include="..\..\2_Application\Library.Queries\Library.Queries.csproj" />
     <ProjectReference Include="..\..\3_Adapters\Library.Elasticsearch\Library.Elasticsearch.csproj" />
     <ProjectReference Include="..\..\3_Adapters\Library.GoogleBooks\Library.GoogleBooks.csproj" />
+    <ProjectReference Include="..\..\3_Adapters\Library.Notifications\Library.Notifications.csproj" />
     <ProjectReference Include="..\..\3_Adapters\Library.OpenLibraryApi\Library.OpenLibraryApi.csproj" />
     <ProjectReference Include="..\..\3_Adapters\Library.Repository\Library.Repository.csproj" />
     <ProjectReference Include="..\Library.Api.ServiceDefaults\Library.Api.ServiceDefaults.csproj" />
