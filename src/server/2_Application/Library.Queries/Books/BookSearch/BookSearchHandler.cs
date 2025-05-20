@@ -1,7 +1,6 @@
 ﻿using CRA.Domain.Mappers;
 using Library.GoogleBooks.Models;
 using Library.Models.Books;
-using Library.OpenLibraryApi.Models;
 using MediatR;
 
 namespace Library.Queries.Books.BookSearch;

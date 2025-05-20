@@ -17,6 +17,6 @@ public static class CatalogNotificationEndpoints
                 await hub.Clients.All.BookAdded(model);
             });
 
-        return catalogNotifications;
+        return endpoints;
     }
 }

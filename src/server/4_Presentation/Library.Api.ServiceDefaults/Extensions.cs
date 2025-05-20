@@ -1,5 +1,7 @@
+using System.Data.SqlClient;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
@@ -48,14 +50,39 @@ public static class Extensions
             {
                 metrics.AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
-                    .AddRuntimeInstrumentation();
+                    .AddRuntimeInstrumentation()
+                    .AddMeter("MassTransit");
             })
             .WithTracing(tracing =>
             {
-                tracing.AddAspNetCoreInstrumentation()
+                tracing
+                    .AddSource("MassTransit")
+                    .AddAspNetCoreInstrumentation()
                     // Uncomment the following line to enable gRPC instrumentation (requires the OpenTelemetry.Instrumentation.GrpcNetClient package)
                     //.AddGrpcClientInstrumentation()
-                    .AddHttpClientInstrumentation();
+                    .AddHttpClientInstrumentation()
+                    .AddElasticsearchClientInstrumentation()
+                    .AddSqlClientInstrumentation(sql =>
+                    {
+                        sql.SetDbStatementForText = true;
+                        sql.Enrich = (activity, sql, ctx) =>
+                        {
+                            if (ctx is SqlCommand sqlCommand)
+                            {
+                                activity.DisplayName = sqlCommand.CommandText;
+
+                                if (sqlCommand.Parameters.Count > 0)
+                                {
+                                    for (int i = 0; i < sqlCommand.Parameters.Count; i++)
+                                    {
+                                        activity.SetTag(
+                                            sqlCommand.Parameters[i].ParameterName,
+                                            sqlCommand.Parameters[i].Value?.ToString());
+                                    }
+                                }
+                            }
+                        };
+                    });
             });
 
         builder.AddOpenTelemetryExporters();

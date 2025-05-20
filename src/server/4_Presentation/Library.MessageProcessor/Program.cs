@@ -13,22 +13,26 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.AddServiceDefaults();
 builder.Services.AddHostedService<Worker>();
 
+builder.Services.AddHealthChecks()
+    .AddSqlServer(builder.Configuration.GetConnectionString("Library"))
+    .AddElasticsearch(builder.Configuration.GetConnectionString("elasticsearch"));
+
 builder.AddRepository();
 builder.Services.AddLibraryCommands();
 builder.Services.AddLibraryQueries();
-builder.Services.AddGoogleBooks(builder.Configuration);
-builder.Services.AddElasticsearch(builder.Configuration);
 builder.Services.AddDomainEvents();
+builder.AddGoogleBooks();
+builder.AddElasticsearch();
 builder.AddNotifications();
 
 builder.Services.AddMassTransit(mt =>
 {
     mt.AddConsumers(typeof(Program).Assembly);
     
-    mt.UsingRabbitMq((ctx, cfg) =>
+    mt.UsingAzureServiceBus((ctx, cfg) =>
     {
-        var uri = builder.Configuration["RabbitMq:Uri"];
-        cfg.Host(uri);
+        var connStr = builder.Configuration.GetConnectionString("service-bus");
+        cfg.Host(new Uri(connStr.Replace("https", "sb")));
         
         cfg.ConfigureEndpoints(ctx);
     });

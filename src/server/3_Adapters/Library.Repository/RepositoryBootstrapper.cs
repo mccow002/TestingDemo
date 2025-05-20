@@ -12,14 +12,21 @@ public static class RepositoryBootstrapper
 {
     public static IHostApplicationBuilder AddRepository(this IHostApplicationBuilder builder)
     {
-        builder.Services.AddDbContext<LibraryContext>(options =>
-        {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DbConn"));
-        });
+        builder.AddDbContext();
         
         builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
         builder.Services.AddScoped<IBookRepository, BookRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+        return builder;
+    }
+
+    public static IHostApplicationBuilder AddDbContext(this IHostApplicationBuilder builder)
+    {
+        builder.Services.AddDbContext<LibraryContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Library"));
+        });
 
         return builder;
     }

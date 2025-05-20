@@ -3,7 +3,7 @@ import { ComponentStore, OnStoreInit } from '@ngrx/component-store';
 import { tapResponse } from '@ngrx/operators';
 
 import {CatalogueHttpService} from "../../data-access/catalogue-http.service";
-import {Observable, switchMap, tap} from "rxjs";
+import { filter, Observable, switchMap, tap } from "rxjs";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {AddBookComponent} from "../add-book/add-book.component";
 import {map} from "rxjs/operators";
@@ -94,6 +94,7 @@ export class BookCatalogueStore extends ComponentStore<BookCatalogueState> imple
         bookId,
         cardNumber: prompt('Enter your card number') ?? ''
       })),
+      filter(data => !!data.cardNumber),
       switchMap(data => this.http.checkoutBook(data.bookId, data.cardNumber).pipe(
         map(rsp => ({checkout: rsp, bookId: data.bookId}))
       )),
@@ -110,6 +111,7 @@ export class BookCatalogueStore extends ComponentStore<BookCatalogueState> imple
         bookId,
         cardNumber: prompt('Enter your card number') ?? ''
       })),
+      filter(data => !!data.cardNumber),
       switchMap(data => this.http.reserveBook(data.bookId, data.cardNumber).pipe(
         map(rsp => ({reservation: rsp, bookId: data.bookId}))
       )),

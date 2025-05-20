@@ -12,7 +12,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\1_Domain\Library.Models\Library.Models.csproj" />
-      <ProjectReference Include="..\..\1_Domain\Library.OpenLibraryApi.Models\Library.OpenLibraryApi.Models.csproj" />
     </ItemGroup>
 
 </Project>

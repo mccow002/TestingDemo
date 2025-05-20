@@ -1,124 +1,255 @@
 [
-  {
-    "httpRequest": {
-      "method": "GET",
-      "path": "/books/v1/volumes/{volumeId}",
-      "pathParameters": { "volumeId": ["[a-zA-Z0-9]+"] },
-      "queryStringParameters": { 
-        "key": ["(.)*"]
-      }
-    },
-    "httpResponse": {
-      "statusCode": 200,
-      "headers": {"Content-Type": "application/json"},
-      "body": {
-        "kind": "books#volume",
-        "id": "jjG4EAAAQBAJ",
-        "etag": "36+Ul+D5rdc",
-        "selfLink": "https://www.googleapis.com/books/v1/volumes/jjG4EAAAQBAJ",
-        "volumeInfo": {
-          "title": "Cascade Failure",
-          "subtitle": "A Novel",
-          "authors": [
-            "L. M. Sagas"
-          ],
-          "publisher": "Tor Publishing Group",
-          "publishedDate": "2024-03-19",
-          "description": "<p><b>L. M. Sagas's debut, <i>Cascade Failure</i>, is a high-octane, sci-fi adventure blending J. S. Dewes's Divide series with <i>Firefly</i>. It features a fierce, messy, chaotic space family, vibrant worlds, and an exploration of the many ways to be—and not to be—human.<br><br></b><b>Most Anticipated Books of 2024—<i>Goodreads</i>, <i>Polygon</i>, <i>The Nerd Daily<br></i></b><b>Best SFF Novels of 2024 (so far)—<i>Bookpage</i><br></b><br>There are only three real powers in the Spiral: the corporate power of the Trust versus the Union's labor's leverage. Between them the Guild tries to keep everyone's hands above the table. It ain't easy.<br><br>Branded a Guild deserter, Jal \"accidentally\" lands a ride on a Guild ship. Helmed by an AI, with a ship's engineer/medic who doesn't see much of a difference between the two jobs, and a \"don't make me shoot you\" XO, the Guild crew of the <i>Ambit</i> is a little . . . different.<br><br>They're also in over their heads. Responding to a distress call from an abandoned planet, they find a mass grave, and a live programmer who knows how it happened. The Trust has plans. This isn't the first dead planet, and it's not going to be the last.<br><br>Unless the crew of the <i>Ambit</i> can stop it.<br><br>Ambit's Run series<br><i>Cascade Failure</i><br><br>At the Publisher's request, this title is being sold without Digital Rights Management Software (DRM) applied.</p>",
-          "industryIdentifiers": [
-            {
-              "type": "ISBN_10",
-              "identifier": "1250871263"
-            },
-            {
-              "type": "ISBN_13",
-              "identifier": "9781250871268"
-            }
-          ],
-          "readingModes": {
-            "text": true,
-            "image": false
-          },
-          "pageCount": 480,
-          "printedPageCount": 297,
-          "printType": "BOOK",
-          "categories": [
-            "Fiction / Science Fiction / Action & Adventure",
-            "Fiction / Science Fiction / Space Opera"
-          ],
-          "maturityRating": "NOT_MATURE",
-          "allowAnonLogging": true,
-          "contentVersion": "1.2.2.0.preview.2",
-          "panelizationSummary": {
-            "containsEpubBubbles": false,
-            "containsImageBubbles": false
-          },
-          "imageLinks": {
-            "smallThumbnail": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70SNPWlFPNgTAEL16kNJR7WWoz305K-ljRVIX-5P7h8cJ5ya-2U16PAhXFrbf_ugYdar6zkJ7Kt4cXymWktbbzVVERh6z5hCQ2TLlH0vaANZIdO4CbB-Lf2Kyb3v-Z6u5BwICxL&source=gbs_api",
-            "thumbnail": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71IBT5vV1u660NipHbYl12JHeXdPbEIKR1GrbL4ajjIS33kMmA-EkWDE4cvEW6QiqefIdKXqXgEuPlWMYu84QEYxIcT8WErTXfe7FHiiQa4pzRF4UOjsNJb9k6f2c3JrLx1kqWb&source=gbs_api",
-            "small": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72cvbO4ErQLtZxQu_jmWM1-Q5cxsT9f3W6HIunWewEmMe_tjapgSs2x5AnRzB0FFEVjpz7O4aekrz73jLm--LNrxICEGf7sBGtTGU_mp7U3YNvXz85RX4XQOz9iD5DiPxqr9l4z&source=gbs_api",
-            "medium": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE71CQh1oeA-K3ZHXzwMbqgDi_Vf3CW_prz5e8HmHUhtDY3s3WBYcI4LZuW4ur9SIk6YXnbtTR8xQFu_gYI4T68jPVXVGMYOV8a1pG1MAhmxsmN7z3risonnegqIldeXr-V4TBTyC&source=gbs_api",
-            "large": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE714Vb1wXh3-UuWqrBP72MHeY-6nzYnXryKJzM7zL2UsY6TPM6suD22K0CCH26nBTYMnkywaJM-ROZHJhpvaZ3-vIkanwJrLdZed5Pv7JJHs3CFF-S4QWnW6A5s46SGP2UYTl_a8&source=gbs_api",
-            "extraLarge": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE70b_LKIdPEejqFyHqwRyz2Wi0kYHQrH3Q1rbNV7UoW6QnNUyjoQSPoAvyQFB-Hs5Mov2gJYYQYeJqQDuonOnde1PFW_hEjoM0vawXJj5QZqEYdzr1UfC-02HSsuJdAv4y_AbDkg&source=gbs_api"
-          },
-          "language": "en",
-          "previewLink": "http://books.google.com/books?id=jjG4EAAAQBAJ&hl=&source=gbs_api",
-          "infoLink": "https://play.google.com/store/books/details?id=jjG4EAAAQBAJ&source=gbs_api",
-          "canonicalVolumeLink": "https://play.google.com/store/books/details?id=jjG4EAAAQBAJ"
-        },
-        "layerInfo": {
-          "layers": [
-            {
-              "layerId": "geo",
-              "volumeAnnotationsVersion": "2"
-            }
-          ]
-        },
-        "saleInfo": {
-          "country": "US",
-          "saleability": "FOR_SALE",
-          "isEbook": true,
-          "listPrice": {
-            "amount": 11.99,
-            "currencyCode": "USD"
-          },
-          "retailPrice": {
-            "amount": 11.99,
-            "currencyCode": "USD"
-          },
-          "buyLink": "https://play.google.com/store/books/details?id=jjG4EAAAQBAJ&rdid=book-jjG4EAAAQBAJ&rdot=1&source=gbs_api",
-          "offers": [
-            {
-              "finskyOfferType": 1,
-              "listPrice": {
-                "amountInMicros": 11990000,
-                "currencyCode": "USD"
-              },
-              "retailPrice": {
-                "amountInMicros": 11990000,
-                "currencyCode": "USD"
-              },
-              "giftable": true
-            }
-          ]
-        },
-        "accessInfo": {
-          "country": "US",
-          "viewability": "PARTIAL",
-          "embeddable": true,
-          "publicDomain": false,
-          "textToSpeechPermission": "ALLOWED",
-          "epub": {
-            "isAvailable": true
-          },
-          "pdf": {
-            "isAvailable": false
-          },
-          "webReaderLink": "http://play.google.com/books/reader?id=jjG4EAAAQBAJ&hl=&source=gbs_api",
-          "accessViewStatus": "SAMPLE",
-          "quoteSharingAllowed": false
-        }
-      }
-    }
-  }
+	{
+		"httpRequest": {
+			"method": "GET",
+			"path": "/books/v1/volumes/{volumeId}",
+			"pathParameters": {
+				"volumeId": [
+					"[a-zA-Z0-9]+"
+				]
+			},
+			"queryStringParameters": {
+				"key": [
+					"(.)*"
+				]
+			}
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"body": {
+				"kind": "books#volume",
+				"id": "jjG4EAAAQBAJ",
+				"etag": "36+Ul+D5rdc",
+				"selfLink": "https://www.googleapis.com/books/v1/volumes/jjG4EAAAQBAJ",
+				"volumeInfo": {
+					"title": "Cascade Failure",
+					"subtitle": "A Novel",
+					"authors": [
+						"L. M. Sagas"
+					],
+					"publisher": "Tor Publishing Group",
+					"publishedDate": "2024-03-19",
+					"description": "<p><b>L. M. Sagas's debut, <i>Cascade Failure</i>, is a high-octane, sci-fi adventure blending J. S. Dewes's Divide series with <i>Firefly</i>. It features a fierce, messy, chaotic space family, vibrant worlds, and an exploration of the many ways to be—and not to be—human.<br><br></b><b>Most Anticipated Books of 2024—<i>Goodreads</i>, <i>Polygon</i>, <i>The Nerd Daily<br></i></b><b>Best SFF Novels of 2024 (so far)—<i>Bookpage</i><br></b><br>There are only three real powers in the Spiral: the corporate power of the Trust versus the Union's labor's leverage. Between them the Guild tries to keep everyone's hands above the table. It ain't easy.<br><br>Branded a Guild deserter, Jal \"accidentally\" lands a ride on a Guild ship. Helmed by an AI, with a ship's engineer/medic who doesn't see much of a difference between the two jobs, and a \"don't make me shoot you\" XO, the Guild crew of the <i>Ambit</i> is a little . . . different.<br><br>They're also in over their heads. Responding to a distress call from an abandoned planet, they find a mass grave, and a live programmer who knows how it happened. The Trust has plans. This isn't the first dead planet, and it's not going to be the last.<br><br>Unless the crew of the <i>Ambit</i> can stop it.<br><br>Ambit's Run series<br><i>Cascade Failure</i><br><br>At the Publisher's request, this title is being sold without Digital Rights Management Software (DRM) applied.</p>",
+					"industryIdentifiers": [
+						{
+							"type": "ISBN_10",
+							"identifier": "1250871263"
+						},
+						{
+							"type": "ISBN_13",
+							"identifier": "9781250871268"
+						}
+					],
+					"readingModes": {
+						"text": true,
+						"image": false
+					},
+					"pageCount": 480,
+					"printedPageCount": 297,
+					"printType": "BOOK",
+					"categories": [
+						"Fiction / Science Fiction / Action & Adventure",
+						"Fiction / Science Fiction / Space Opera"
+					],
+					"maturityRating": "NOT_MATURE",
+					"allowAnonLogging": true,
+					"contentVersion": "1.2.2.0.preview.2",
+					"panelizationSummary": {
+						"containsEpubBubbles": false,
+						"containsImageBubbles": false
+					},
+					"imageLinks": {
+						"smallThumbnail": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70SNPWlFPNgTAEL16kNJR7WWoz305K-ljRVIX-5P7h8cJ5ya-2U16PAhXFrbf_ugYdar6zkJ7Kt4cXymWktbbzVVERh6z5hCQ2TLlH0vaANZIdO4CbB-Lf2Kyb3v-Z6u5BwICxL&source=gbs_api",
+						"thumbnail": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71IBT5vV1u660NipHbYl12JHeXdPbEIKR1GrbL4ajjIS33kMmA-EkWDE4cvEW6QiqefIdKXqXgEuPlWMYu84QEYxIcT8WErTXfe7FHiiQa4pzRF4UOjsNJb9k6f2c3JrLx1kqWb&source=gbs_api",
+						"small": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72cvbO4ErQLtZxQu_jmWM1-Q5cxsT9f3W6HIunWewEmMe_tjapgSs2x5AnRzB0FFEVjpz7O4aekrz73jLm--LNrxICEGf7sBGtTGU_mp7U3YNvXz85RX4XQOz9iD5DiPxqr9l4z&source=gbs_api",
+						"medium": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE71CQh1oeA-K3ZHXzwMbqgDi_Vf3CW_prz5e8HmHUhtDY3s3WBYcI4LZuW4ur9SIk6YXnbtTR8xQFu_gYI4T68jPVXVGMYOV8a1pG1MAhmxsmN7z3risonnegqIldeXr-V4TBTyC&source=gbs_api",
+						"large": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE714Vb1wXh3-UuWqrBP72MHeY-6nzYnXryKJzM7zL2UsY6TPM6suD22K0CCH26nBTYMnkywaJM-ROZHJhpvaZ3-vIkanwJrLdZed5Pv7JJHs3CFF-S4QWnW6A5s46SGP2UYTl_a8&source=gbs_api",
+						"extraLarge": "http://books.google.com/books/publisher/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE70b_LKIdPEejqFyHqwRyz2Wi0kYHQrH3Q1rbNV7UoW6QnNUyjoQSPoAvyQFB-Hs5Mov2gJYYQYeJqQDuonOnde1PFW_hEjoM0vawXJj5QZqEYdzr1UfC-02HSsuJdAv4y_AbDkg&source=gbs_api"
+					},
+					"language": "en",
+					"previewLink": "http://books.google.com/books?id=jjG4EAAAQBAJ&hl=&source=gbs_api",
+					"infoLink": "https://play.google.com/store/books/details?id=jjG4EAAAQBAJ&source=gbs_api",
+					"canonicalVolumeLink": "https://play.google.com/store/books/details?id=jjG4EAAAQBAJ"
+				},
+				"layerInfo": {
+					"layers": [
+						{
+							"layerId": "geo",
+							"volumeAnnotationsVersion": "2"
+						}
+					]
+				},
+				"saleInfo": {
+					"country": "US",
+					"saleability": "FOR_SALE",
+					"isEbook": true,
+					"listPrice": {
+						"amount": 11.99,
+						"currencyCode": "USD"
+					},
+					"retailPrice": {
+						"amount": 11.99,
+						"currencyCode": "USD"
+					},
+					"buyLink": "https://play.google.com/store/books/details?id=jjG4EAAAQBAJ&rdid=book-jjG4EAAAQBAJ&rdot=1&source=gbs_api",
+					"offers": [
+						{
+							"finskyOfferType": 1,
+							"listPrice": {
+								"amountInMicros": 11990000,
+								"currencyCode": "USD"
+							},
+							"retailPrice": {
+								"amountInMicros": 11990000,
+								"currencyCode": "USD"
+							},
+							"giftable": true
+						}
+					]
+				},
+				"accessInfo": {
+					"country": "US",
+					"viewability": "PARTIAL",
+					"embeddable": true,
+					"publicDomain": false,
+					"textToSpeechPermission": "ALLOWED",
+					"epub": {
+						"isAvailable": true
+					},
+					"pdf": {
+						"isAvailable": false
+					},
+					"webReaderLink": "http://play.google.com/books/reader?id=jjG4EAAAQBAJ&hl=&source=gbs_api",
+					"accessViewStatus": "SAMPLE",
+					"quoteSharingAllowed": false
+				}
+			}
+		}
+	},
+	{
+		"httpRequest": {
+			"method": "GET",
+			"path": "/books/v1/volumes",
+			"queryStringParameters": {
+				"q": [
+					"(.)*"
+				],
+				"key": [
+					"(.)*"
+				]
+			}
+		},
+		"httpResponse": {
+			"statusCode": 200,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"body": {
+				"kind": "books#volumes",
+				"totalItems": 1000000,
+				"items": [
+					{
+						"kind": "books#volume",
+						"id": "jjG4EAAAQBAJ",
+						"etag": "KBsHPL7F9qM",
+						"selfLink": "https://www.googleapis.com/books/v1/volumes/jjG4EAAAQBAJ",
+						"volumeInfo": {
+							"title": "Cascade Failure",
+							"subtitle": "A Novel",
+							"authors": [
+								"L. M. Sagas"
+							],
+							"publisher": "Tor Books",
+							"publishedDate": "2024-03-19",
+							"description": "L. M. Sagas's debut, Cascade Failure, is a high-octane, sci-fi adventure blending J. S. Dewes's Divide series with Firefly. It features a fierce, messy, chaotic space family, vibrant worlds, and an exploration of the many ways to be—and not to be—human. Most Anticipated Books of 2024—Goodreads, Polygon, The Nerd Daily There are only three real powers in the Spiral: the corporate power of the Trust versus the Union's labor's leverage. Between them the Guild tries to keep everyone's hands above the table. It ain't easy. Branded a Guild deserter, Jal \"accidentally\" lands a ride on a Guild ship. Helmed by an AI, with a ship's engineer/medic who doesn't see much of a difference between the two jobs, and a \"don't make me shoot you\" XO, the Guild crew of the Ambit is a little . . . different. They're also in over their heads. Responding to a distress call from an abandoned planet, they find a mass grave, and a live programmer who knows how it happened. The Trust has plans. This isn't the first dead planet, and it's not going to be the last. Unless the crew of the Ambit can stop it. Ambit's Run series Cascade Failure At the Publisher's request, this title is being sold without Digital Rights Management Software (DRM) applied.",
+							"industryIdentifiers": [
+								{
+									"type": "ISBN_13",
+									"identifier": "9781250871268"
+								},
+								{
+									"type": "ISBN_10",
+									"identifier": "1250871263"
+								}
+							],
+							"readingModes": {
+								"text": true,
+								"image": false
+							},
+							"pageCount": 297,
+							"printType": "BOOK",
+							"categories": [
+								"Fiction"
+							],
+							"maturityRating": "NOT_MATURE",
+							"allowAnonLogging": true,
+							"contentVersion": "1.2.2.0.preview.2",
+							"panelizationSummary": {
+								"containsEpubBubbles": false,
+								"containsImageBubbles": false
+							},
+							"imageLinks": {
+								"smallThumbnail": "http://books.google.com/books/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+								"thumbnail": "http://books.google.com/books/content?id=jjG4EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+							},
+							"language": "en",
+							"previewLink": "http://books.google.com/books?id=jjG4EAAAQBAJ&printsec=frontcover&dq=Cascade+Failure+Sagas&hl=&cd=1&source=gbs_api",
+							"infoLink": "https://play.google.com/store/books/details?id=jjG4EAAAQBAJ&source=gbs_api",
+							"canonicalVolumeLink": "https://play.google.com/store/books/details?id=jjG4EAAAQBAJ"
+						},
+						"saleInfo": {
+							"country": "US",
+							"saleability": "FOR_SALE",
+							"isEbook": true,
+							"listPrice": {
+								"amount": 11.99,
+								"currencyCode": "USD"
+							},
+							"retailPrice": {
+								"amount": 11.99,
+								"currencyCode": "USD"
+							},
+							"buyLink": "https://play.google.com/store/books/details?id=jjG4EAAAQBAJ&rdid=book-jjG4EAAAQBAJ&rdot=1&source=gbs_api",
+							"offers": [
+								{
+									"finskyOfferType": 1,
+									"listPrice": {
+										"amountInMicros": 11990000,
+										"currencyCode": "USD"
+									},
+									"retailPrice": {
+										"amountInMicros": 11990000,
+										"currencyCode": "USD"
+									},
+									"giftable": true
+								}
+							]
+						},
+						"accessInfo": {
+							"country": "US",
+							"viewability": "PARTIAL",
+							"embeddable": true,
+							"publicDomain": false,
+							"textToSpeechPermission": "ALLOWED",
+							"epub": {
+								"isAvailable": true
+							},
+							"pdf": {
+								"isAvailable": false
+							},
+							"webReaderLink": "http://play.google.com/books/reader?id=jjG4EAAAQBAJ&hl=&source=gbs_api",
+							"accessViewStatus": "SAMPLE",
+							"quoteSharingAllowed": false
+						},
+						"searchInfo": {
+							"textSnippet": "L. M. Sagas&#39;s debut, Cascade Failure, is a high-octane, sci-fi adventure blending J. S. Dewes&#39;s Divide series with Firefly."
+						}
+					}
+				]
+			}
+		}
+	}
 ]

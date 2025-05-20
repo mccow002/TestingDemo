@@ -9,14 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aspire.Azure.Messaging.ServiceBus" Version="9.3.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.AzureServiceBus" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.Elasticsearch" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
     <PackageReference Include="MassTransit" Version="8.4.1" />
+    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.4.1" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="PactNet" Version="5.0.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
   </ItemGroup>
 
@@ -27,7 +34,6 @@
     <ProjectReference Include="..\..\3_Adapters\Library.Elasticsearch\Library.Elasticsearch.csproj" />
     <ProjectReference Include="..\..\3_Adapters\Library.GoogleBooks\Library.GoogleBooks.csproj" />
     <ProjectReference Include="..\..\3_Adapters\Library.Notifications\Library.Notifications.csproj" />
-    <ProjectReference Include="..\..\3_Adapters\Library.OpenLibraryApi\Library.OpenLibraryApi.csproj" />
     <ProjectReference Include="..\..\3_Adapters\Library.Repository\Library.Repository.csproj" />
     <ProjectReference Include="..\Library.Api.ServiceDefaults\Library.Api.ServiceDefaults.csproj" />
   </ItemGroup>

@@ -9,8 +9,7 @@ public class ProjectReferences
     private static List<Assembly> _domainAssemblies =
     [
         typeof(Domain.IDomainMarker).Assembly,
-        typeof(Models.IModelsMarker).Assembly,
-        typeof(OpenLibraryApi.Models.IOpenLibraryApiModelsMarker).Assembly
+        typeof(Models.IModelsMarker).Assembly
     ];
     
     [Fact]

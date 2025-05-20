@@ -32,3 +32,13 @@ services:
         ports:
         - 5672:5672
         - 15672:15672
+        
+    booksapi:
+        image: mockserver/mockserver:latest
+        ports: 
+        - 1080:1080
+        volumes:
+        - ${USERPROFILE}\source\repos\TestingDemo\tests\Library.IntegrationTests\ApiSpecs\GoogleBooks:/config/
+        environment:
+        - MOCKSERVER_INITIALIZATION_JSON_PATH=/config/*.json
+        - MOCKSERVER_WATCH_INITIALIZATION_JSON=true

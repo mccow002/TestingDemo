@@ -3,24 +3,25 @@ using Library.Models.Books;
 using Library.Models.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Library.Elasticsearch;
 
 public static class ElasticsearchBootstrapper
 {
-    public static IServiceCollection AddElasticsearch(this IServiceCollection services, IConfiguration config)
+    public static IHostApplicationBuilder AddElasticsearch(this IHostApplicationBuilder builder)
     {
-        services.AddSingleton<ElasticsearchClient>(_ =>
+        builder.Services.AddSingleton<ElasticsearchClient>(_ =>
         {
-            var uri = new Uri(config["Elasticsearch:Uri"]);
+            var uri = new Uri(builder.Configuration.GetConnectionString("elasticsearch"));
             var settings = new ElasticsearchClientSettings(uri)
                 .DefaultMappingFor<BookViewModel>(x => x.IndexName(nameof(BookViewModel).ToLower()));
             return new ElasticsearchClient(settings);
         });
 
-        services.AddTransient<IReadonlyStore, ReadonlyStore>();
-        services.AddTransient<IBookReadonlyRepository, BookReadonlyRepository>();
+        builder.Services.AddTransient<IReadonlyStore, ReadonlyStore>();
+        builder.Services.AddTransient<IBookReadonlyRepository, BookReadonlyRepository>();
         
-        return services;
+        return builder;
     }
 }

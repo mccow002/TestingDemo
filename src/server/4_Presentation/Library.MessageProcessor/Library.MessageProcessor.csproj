@@ -9,7 +9,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AspNetCore.HealthChecks.Elasticsearch" Version="9.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
         <PackageReference Include="MassTransit" Version="8.4.1" />
+        <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.4.1" />
         <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
     </ItemGroup>

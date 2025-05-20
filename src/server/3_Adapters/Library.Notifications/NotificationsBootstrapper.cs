@@ -10,7 +10,7 @@ public static class NotificationsBootstrapper
     public static IHostApplicationBuilder AddNotifications(this IHostApplicationBuilder builder)
     {
         builder.Services.AddRefitClient<INotificationClient>()
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["NotificationApi:Uri"]));
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri("https+http://libraryapi"));
 
         return builder;
     }

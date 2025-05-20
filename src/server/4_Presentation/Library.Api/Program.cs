@@ -1,4 +1,3 @@
-using Library.Api;
 using Library.Api.Endpoints;
 using Library.Api.ServiceDefaults;
 using Library.Commands;
@@ -6,10 +5,10 @@ using Library.DomainEvents;
 using Library.Elasticsearch;
 using Library.GoogleBooks;
 using Library.Notifications;
-using Library.Notifications.Models;
 using Library.Queries;
 using Library.Repository;
 using MassTransit;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,23 +19,38 @@ builder.AddServiceDefaults();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
 builder.Services.AddSignalR();
-builder.Services.AddCors(c => c.AddDefaultPolicy(p => p.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+builder.Services.AddCors(c => c
+    .AddDefaultPolicy(p => p
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .WithOrigins(builder.Configuration["Origin"])
+    )
+);
+
+builder.Services.AddHealthChecks()
+    .AddSqlServer(builder.Configuration.GetConnectionString("Library"), tags: ["live"])
+    .AddElasticsearch(builder.Configuration.GetConnectionString("elasticsearch"), tags: ["live"]);
 
 builder.AddRepository();
 builder.Services.AddLibraryCommands();
 builder.Services.AddLibraryQueries();
-builder.Services.AddGoogleBooks(builder.Configuration);
-builder.Services.AddElasticsearch(builder.Configuration);
 builder.Services.AddDomainEvents();
+builder.AddGoogleBooks();
+builder.AddElasticsearch();
 builder.AddNotifications();
+
+builder.Services.AddServiceDiscoveryCore();
+builder.Services.AddConfigurationServiceEndpointProvider();
 
 builder.Services.AddMassTransit(mt =>
 {
-    mt.UsingRabbitMq((ctx, cfg) =>
+    mt.UsingAzureServiceBus((ctx, cfg) =>
     {
-        var uri = builder.Configuration["RabbitMq:Uri"];
-        cfg.Host(uri);
+        var connStr = builder.Configuration.GetConnectionString("service-bus");
+        Console.WriteLine(connStr);
+        cfg.Host(new Uri(connStr.Replace("https", "sb")));
         
         cfg.ConfigureEndpoints(ctx);
     });
@@ -53,6 +67,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
@@ -64,7 +81,9 @@ app
     .MapCatalogNotificationEndpoints()
     .MapUserEndpoints();
 
-app.MapHub<NotificationHub>("/notifications");   
+app.MapHub<NotificationHub>("/notifications");
+
+app.MapGet("/config", (IConfiguration config) => ((IConfigurationRoot)config).GetDebugView());
 
 app.Run();
 

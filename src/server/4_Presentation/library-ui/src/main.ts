@@ -22,7 +22,7 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(ModalModule.forRoot()),
     {
       provide: URL_TOKEN,
-      useValue: 'https://localhost:7179'
+      useValue: 'api'
     },
     provideAppInitializer(() => {
       const hub = inject(SignalrService);

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
 
@@ -13,12 +13,27 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.1" />
+    <PackageReference Include="Aspire.Hosting.Azure.ServiceBus" Version="9.2.1" />
     <PackageReference Include="Aspire.Hosting.Azure.Sql" Version="9.2.1" />
+    <PackageReference Include="Aspire.Hosting.Elasticsearch" Version="9.2.1-preview.1.25222.1" />
+    <PackageReference Include="Aspire.Hosting.NodeJs" Version="9.2.1" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Library.Api\Library.Api.csproj" />
+    <ProjectReference Include="..\Library.DataMigration\Library.DataMigration.csproj" />
     <ProjectReference Include="..\Library.MessageProcessor\Library.MessageProcessor.csproj" />
   </ItemGroup>
+
+  <Target Name="RestoreNpm" BeforeTargets="Build" Condition=" '$(DesignTimeBuild)' != 'true' ">
+	  <ItemGroup>
+		  <PackageJsons Include="..\*\package.json" />
+	  </ItemGroup>
+
+	  <!-- Install npm packages if node_modules is missing -->
+	  <Message Importance="Normal" Text="Installing npm packages for %(PackageJsons.RelativeDir)" Condition="!Exists('%(PackageJsons.RootDir)%(PackageJsons.Directory)/node_modules')" />
+	  <Exec Command="npm install" WorkingDirectory="%(PackageJsons.RootDir)%(PackageJsons.Directory)" Condition="!Exists('%(PackageJsons.RootDir)%(PackageJsons.Directory)/node_modules')" />
+  </Target>
 
 </Project>
