@@ -1,0 +1,57 @@
+What is Aspire?
+
+Add Aspire Project
+Discuss Service Defaults
+	Add Orchestration to existing
+	Add new project
+	IsAspireSharedProject - AddServiceDefaults
+Add Projects
+	LaunchSettings.json
+	Custom Urls
+	With Environment - Origin
+	
+Health Checks
+	Live Check
+OpenTelemetry
+	Default Instrumentation
+	Filtering
+	MassTransit, SQL, Elasticsearch
+	Custom
+Service Discovery
+	Resilience (Jitter adds randomness before retrying)
+	Multiple Replicas
+	
+	
+Add angular app
+	NPM Install
+	Service Discovery
+	Health check
+
+Add other dependencies
+	How to search nuget for aspire integrations
+	Larger scale integrations like Dapr, Orleans, and Kubernetes
+	RabbitMq, SqlServer, Elasticsearch
+	WaitFor
+	
+Sql Migrations Project
+	WaitForCompletion
+	
+Mock Server - Custom Dependency
+	IResource
+	How WithReference works
+	IResourceWithConnectionString
+	IResourceWithServiceDiscovery
+	Make some random name endpoint with Mockserver
+Azure Dependencies
+	Service Bus
+		User Secrets with Subscription Info for resource creation
+	RoleAssignments
+	Existing Resource - GetConnectionString
+
+Integration Testing
+
+Deployments
+	ExcludeFromManifest
+	ExecutionContext
+	AddServiceBus vs GetConnectionString
+	azd init, azd up

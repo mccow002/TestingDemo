@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var useBooksMock = false;
+var useBooksMock = true;
 
 var sql = builder.AddSqlServer("sql")
     .WithLifetime(ContainerLifetime.Persistent);
@@ -41,7 +41,7 @@ var migration = builder.AddProject<Projects.Library_DataMigration>("setup")
     .WithReference(db);
 
 var api = builder.AddProject<Projects.Library_Api>("libraryapi")
-    .WithHttpsHealthCheck("/alive")
+    .WithHttpHealthCheck("/alive")
     .WithReference(sb)
     .WithReference(db)
     .WithReference(elastic)
@@ -49,8 +49,12 @@ var api = builder.AddProject<Projects.Library_Api>("libraryapi")
     .WaitForCompletion(migration)
     .WaitFor(elastic);
 
-api.WithUrl($"{api.GetEndpoint("https")}/scalar", "Scalar");
-api.WithReference(api);
+api.WithUrlForEndpoint("https", ep => new()
+{
+    Url = "/Scalar",
+    DisplayText = "Scalar",
+    DisplayLocation = UrlDisplayLocation.SummaryAndDetails
+});
 
 var processor = builder.AddProject<Projects.Library_MessageProcessor>("library-message-processor")
     .WithReference(db)
