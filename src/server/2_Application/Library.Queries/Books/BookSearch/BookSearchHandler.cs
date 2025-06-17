@@ -13,7 +13,7 @@ public class BookSearchHandler(IGoogleBooksApiClient apiClient) : IRequestHandle
 {
     public async Task<BookSearchResponse> Handle(BookSearchRequest request, CancellationToken cancellationToken)
     {
-        var results = await apiClient.Search(request.SearchTerm, "AIzaSyCC478lljstyd4uqJQo-Kudqeddx5Osx2o");
+        var results = await apiClient.Search(request.SearchTerm, cancellationToken);
         var viewModels = results.Items
             .Select(x => x.AdaptToBookViewModel())
             .ToList();

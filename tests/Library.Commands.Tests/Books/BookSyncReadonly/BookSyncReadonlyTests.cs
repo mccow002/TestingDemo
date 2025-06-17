@@ -28,7 +28,7 @@ public class BookSyncReadonlyTests
         
         // Assert
         _fixture.MockBookRepository.Received().GetById(request.BookId, default);
-        _fixture.MockApiClient.Received().GetBookById(_fixture.Book.VolumeId, Arg.Any<string>());
+        _fixture.MockApiClient.Received().GetBookById(_fixture.Book.VolumeId, default);
 
         _fixture.MockReadonlyStore.Received().Index(Arg.Any<BookViewModel>(), default);
     }

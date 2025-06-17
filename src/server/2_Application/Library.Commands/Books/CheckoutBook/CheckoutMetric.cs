@@ -12,8 +12,12 @@ public class CheckoutMetric
         _checkoutMeter = meter.CreateCounter<int>("books.checkedout");
     }
 
-    public void Checkout()
+    public void Checkout(Guid bookId, Guid userId)
     {
-        
+        _checkoutMeter.Add(1, new []
+        {
+            new KeyValuePair<string, object?>("bookId", bookId),
+            new KeyValuePair<string, object?>("userId", userId)
+        });
     }
 }

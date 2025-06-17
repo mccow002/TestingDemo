@@ -9,7 +9,8 @@ public record CheckoutBookRequest(Guid BookId, string CardNumber) : IRequest<Che
 
 public class CheckoutBookHandler(
     IBookRepository bookRepository, 
-    IUserRepository userRepository) 
+    IUserRepository userRepository,
+    CheckoutMetric checkoutMetric) 
     : IRequestHandler<CheckoutBookRequest, CheckoutViewModel>
 {
     public async Task<CheckoutViewModel> Handle(
@@ -27,6 +28,8 @@ public class CheckoutBookHandler(
         
         bookRepository.Add(checkout);
         await bookRepository.SaveChangesAsync(cancellationToken);
+        
+        checkoutMetric.Checkout(request.BookId, user.UserId);
 
         return await bookRepository.GetCheckout(
             request.BookId, 

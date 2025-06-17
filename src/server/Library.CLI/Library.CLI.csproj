@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\1_Domain\Library.Domain\Library.Domain.csproj" />
+      <ProjectReference Include="..\1_Domain\Library.Notifications.Models\Library.Notifications.Models.csproj" />
+      <ProjectReference Include="..\3_Adapters\Library.Elasticsearch\Library.Elasticsearch.csproj" />
+      <ProjectReference Include="..\3_Adapters\Library.GoogleBooks\Library.GoogleBooks.csproj" />
+      <ProjectReference Include="..\3_Adapters\Library.Repository\Library.Repository.csproj" />
+      <ProjectReference Include="..\4_Presentation\Library.Api.ServiceDefaults\Library.Api.ServiceDefaults.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+      <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1" />
+    </ItemGroup>
+
+</Project>

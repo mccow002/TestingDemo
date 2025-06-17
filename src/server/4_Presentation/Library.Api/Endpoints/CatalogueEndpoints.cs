@@ -1,4 +1,5 @@
-﻿using Library.Commands.Books.CheckinBook;
+﻿using Library.Commands.Books.BookSyncReadonly;
+using Library.Commands.Books.CheckinBook;
 using Library.Commands.Books.CheckoutBook;
 using Library.Commands.Books.ReserveBook;
 using Library.Queries.Books.GetAllBooks;
@@ -32,6 +33,14 @@ public static class CatalogueEndpoints
         catalogue.MapPost("/checkin",
             async ([FromBody] CheckinBookRequest request, IMediator mediator, CancellationToken token) =>
             Results.Ok(await mediator.Send(request, token))
+        );
+
+        catalogue.MapPost("/resync",
+            async (IMediator mediator, CancellationToken token) =>
+            {
+                await mediator.Send(new SyncReadonlyRequest(), token);
+                return Results.Ok();
+            }
         );
 
         return endpoints;

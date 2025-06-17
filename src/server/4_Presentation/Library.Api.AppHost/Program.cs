@@ -1,4 +1,5 @@
 using Azure.Provisioning.ServiceBus;
+using Library.Api.AppHost;
 using Microsoft.Extensions.Configuration;
 
 var builder = DistributedApplication.CreateBuilder(args);
@@ -42,7 +43,8 @@ var api = builder.AddProject<Projects.Library_Api>("libraryapi")
     .WithReference(elastic)
     .WaitFor(sb)
     .WaitForCompletion(migration)
-    .WaitFor(elastic);
+    .WaitFor(elastic)
+    .WithSyncReadonlyCommand();
 
 api.WithUrlForEndpoint("https", ep => new()
 {
@@ -73,7 +75,16 @@ api.WithEnvironment("Origin", ui.GetEndpoint("http"));
 if (builder.ExecutionContext.IsRunMode)
 {
     api.WithRoleAssignments(sb, ServiceBusBuiltInRole.AzureServiceBusDataSender);
-    api.WithRoleAssignments(sb, ServiceBusBuiltInRole.AzureServiceBusDataOwner);
+    processor.WithRoleAssignments(sb, ServiceBusBuiltInRole.AzureServiceBusDataOwner);
+
+    // var cli = builder.AddProject<Projects.Library_CLI>("library-cli")
+    //     .WithReference(db)
+    //     .WithReference(elastic)
+    //     .WithReference("books-api", new Uri(builder.Configuration.GetConnectionString("GoogleBooks")))
+    //     .WaitFor(elastic)
+    //     .WaitForCompletion(migration)
+    //     .WithExplicitStart()
+    //     .WithSyncReadonlyCommand();
 }
 
 if (useBooksMock)

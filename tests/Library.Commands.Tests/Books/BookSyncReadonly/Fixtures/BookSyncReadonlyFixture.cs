@@ -34,7 +34,7 @@ public class BookSyncReadonlyFixture : Fixture
         SearchItem = resultsFaker.Generate();
 
         MockBookRepository.GetById(Arg.Any<Guid>(), default).Returns(_ => Book);
-        MockApiClient.GetBookById(Arg.Any<string>(), Arg.Any<string>()).Returns(_ => SearchItem);
+        MockApiClient.GetBookById(Arg.Any<string>(), default).Returns(_ => SearchItem);
     }
 
     public BookSyncReadonlyHandler CreateSut()

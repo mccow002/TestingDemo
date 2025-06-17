@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Library.Commands.Books.CheckoutBook;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Library.Commands;
 
@@ -10,7 +11,10 @@ public static class LibraryCommandsBootstrapper
         {
             configuration.RegisterServicesFromAssemblyContaining<ILibraryCommandsMarker>();
         });
+        
         services.AddSingleton<TimeProvider>(_ => TimeProvider.System);
+        services.AddSingleton<CheckoutMetric>();
+        
         return services;
     }
 }

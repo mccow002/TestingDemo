@@ -9,8 +9,11 @@ public static class GoogleBooksBootstrapper
 {
     public static IHostApplicationBuilder AddGoogleBooks(this IHostApplicationBuilder builder)
     {
+        builder.Services.AddTransient<AuthHandler>();
+        
         builder.Services.AddRefitClient<IGoogleBooksApiClient>()
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri("http+https://books-api"));
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri("http+https://books-api"))
+            .AddHttpMessageHandler<AuthHandler>();
 
         return builder;
     }

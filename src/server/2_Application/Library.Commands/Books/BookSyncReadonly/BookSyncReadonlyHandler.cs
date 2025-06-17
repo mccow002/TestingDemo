@@ -18,7 +18,7 @@ public class BookSyncReadonlyHandler(
     public async Task Handle(BookSyncReadonlyRequest request, CancellationToken cancellationToken)
     {
         var book = await bookRepository.GetById(request.BookId, cancellationToken);
-        var result = await api.GetBookById(book.VolumeId, "AIzaSyCC478lljstyd4uqJQo-Kudqeddx5Osx2o");
+        var result = await api.GetBookById(book.VolumeId, cancellationToken);
         
         var viewModel = result.AdaptToBookViewModel();
         viewModel.BookId = book.BookId;

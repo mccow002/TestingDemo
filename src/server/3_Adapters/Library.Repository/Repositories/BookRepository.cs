@@ -14,6 +14,11 @@ public class BookRepository(LibraryContext context, IMediator mediator) : Librar
         return await context.Set<Book>().FirstOrDefaultAsync(x => x.BookId == bookId, token);
     }
     
+    public async Task<List<Book>> GetAllBooks(CancellationToken token)
+    {
+        return await context.Set<Book>().ToListAsync(token);
+    }
+    
     public async Task<Book> GetBookForCheckin(Guid bookId, CancellationToken token)
     {
         return await context.Set<Book>()
