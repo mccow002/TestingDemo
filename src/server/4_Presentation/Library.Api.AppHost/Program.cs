@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var useBooksMock = true;
+var useBooksMock = builder.Configuration.GetValue("mockBooks", false);
 
 var sql = builder.AddSqlServer("sql")
     .WithLifetime(ContainerLifetime.Persistent);
@@ -32,16 +32,11 @@ if (!builder.Configuration.GetValue("UseVolumes", true))
     elastic.WithDataVolume();
 }
 
-var booksApiMock = builder
-    .AddMockServer("books-api", "../../../../tests/Library.IntegrationTests/ApiSpecs/GoogleBooks/")
-    .ExcludeFromManifest();
-
 var migration = builder.AddProject<Projects.Library_DataMigration>("setup")
     .WaitFor(db)
     .WithReference(db);
 
 var api = builder.AddProject<Projects.Library_Api>("libraryapi")
-    .WithHttpHealthCheck("/alive")
     .WithReference(sb)
     .WithReference(db)
     .WithReference(elastic)
@@ -83,6 +78,10 @@ if (builder.ExecutionContext.IsRunMode)
 
 if (useBooksMock)
 {
+    var booksApiMock = builder
+        .AddMockServer("books-api", "../../../../tests/Library.IntegrationTests/ApiSpecs/GoogleBooks/")
+        .ExcludeFromManifest();
+    
     api
         .WithReference(booksApiMock)
         .WaitFor(booksApiMock);
@@ -90,6 +89,11 @@ if (useBooksMock)
     processor
         .WithReference(booksApiMock)
         .WaitFor(booksApiMock);
+}
+else
+{
+    api.WithReference("books-api", new Uri(builder.Configuration.GetConnectionString("GoogleBooks")));
+    processor.WithReference("books-api", new Uri(builder.Configuration.GetConnectionString("GoogleBooks")));
 }
 
 builder.Build().Run();

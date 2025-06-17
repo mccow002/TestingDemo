@@ -13,6 +13,19 @@
         "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22285"
       }
     },
+    "MockBooksAPI": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:17105;http://localhost:15188",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_ENVIRONMENT": "Development",
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21298",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22285"
+      },
+      "commandLineArgs": "mockBooks=true"
+    },
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,

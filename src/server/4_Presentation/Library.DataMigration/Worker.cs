@@ -4,14 +4,15 @@ using System.Diagnostics;
 
 namespace Library.DataMigration;
 
-public class Worker(IHostApplicationLifetime hostApplicationLifetime, IServiceProvider provider) : BackgroundService
+public class Worker(
+    IHostApplicationLifetime hostApplicationLifetime,
+    ActivitySource activitySource,
+    IHostEnvironment env,
+    IServiceProvider provider) : BackgroundService
 {
-    public const string ActivitySourceName = "Migrations";
-    private static readonly ActivitySource _activitySource = new(ActivitySourceName);
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        using var activity = _activitySource.StartActivity("Migrating database", ActivityKind.Client);
+        using var activity = activitySource.StartActivity("Migrating database", ActivityKind.Client);
 
         try
         {
@@ -28,7 +29,18 @@ public class Worker(IHostApplicationLifetime hostApplicationLifetime, IServicePr
             throw;
         }
 
-        hostApplicationLifetime.StopApplication();
+        if (env.IsDevelopment())
+        {
+            hostApplicationLifetime.StopApplication();
+        }
+        else
+        {
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                // Keep the service running to allow for graceful shutdown
+                await Task.Delay(10000, stoppingToken);
+            }
+        }
     }
 
     private static async Task RunMigrationAsync(LibraryContext dbContext, CancellationToken cancellationToken)

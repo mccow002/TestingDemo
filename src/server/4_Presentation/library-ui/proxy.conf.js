@@ -6,8 +6,8 @@ module.exports = {
     secure: process.env["NODE_ENV"] !== "development",
     "ws": true,
     pathRewrite: {
-      "^/api": "",
+      "^/api": ""
     },
     "logLevel": "debug"
-  },
+  }
 };
